@@ -1,0 +1,1044 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Reference</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<button onclick="topFunction()" id="back2top" title="Nach oben scrollen">&#11014</button>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>ldoc</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Properties">Properties</a></li>
+<li><a href="#Calculator">Calculator</a></li>
+<li><a href="#AiArmyBehavior">AiArmyBehavior</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/ext.loader.html">ext.loader</a></li>
+  <li><strong>lib.ai.aiarmy</strong></li>
+  <li><a href="../modules/lib.ai.aicontroller.html">lib.ai.aicontroller</a></li>
+  <li><a href="../modules/lib.ai.aitrooprecruiter.html">lib.ai.aitrooprecruiter</a></li>
+  <li><a href="../modules/lib.ai.aitroopspawner.html">lib.ai.aitroopspawner</a></li>
+  <li><a href="../modules/lib.oop.html">lib.oop</a></li>
+  <li><a href="../modules/lib.quest.questbehavior.html">lib.quest.questbehavior</a></li>
+  <li><a href="../modules/lib.quest.questbriefing.html">lib.quest.questbriefing</a></li>
+  <li><a href="../modules/lib.quest.questcore.html">lib.quest.questcore</a></li>
+  <li><a href="../modules/lib.quest.questdebug.html">lib.quest.questdebug</a></li>
+  <li><a href="../modules/lib.quest.questsync.html">lib.quest.questsync</a></li>
+  <li><a href="../modules/lib.quest.questsystem.html">lib.quest.questsystem</a></li>
+  <li><a href="../modules/lib.quest.questtools.html">lib.quest.questtools</a></li>
+  <li><a href="../modules/lib.quest.questtreasure.html">lib.quest.questtreasure</a></li>
+  <li><a href="../modules/lib.ui.interaction.html">lib.ui.interaction</a></li>
+  <li><a href="../modules/lib.ui.onscreeninfo.html">lib.ui.onscreeninfo</a></li>
+  <li><a href="../modules/lib.ui.optionsmenu.html">lib.ui.optionsmenu</a></li>
+  <li><a href="../modules/lib.ui.speed.html">lib.ui.speed</a></li>
+  <li><a href="../modules/lib.ui.workplace.html">lib.ui.workplace</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>lib.ai.aiarmy</code></h1>
+<p>This module is used by the AI controller to create armies.</p>
+<p> Using or Changing
+ functions of the army is at your own risk.
+<p> <b>Required modules:</b>
+ <ul>
+ <li>qsb.oop</li>
+ <li>qsb.quest.questsync</li>
+ <li>qsb.quest.questtools</li>
+ <li>qsb.ai.aitrooprecruiter</li>
+ <li>qsb.ai.aitroopspawner</li>
+ </ul>
+</p>
+
+
+<h2><a href="#Properties">Properties</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#AiArmy:AddEntity">AiArmy:AddEntity (_TroopID, _Instantly)</a></td>
+	<td class="summary">Adds an entity to the army.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#AiArmy:AddProducer">AiArmy:AddProducer (_Producer)</a></td>
+	<td class="summary">Adds the producer to the army.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#AiArmy:CalculateStrength">AiArmy:CalculateStrength (_WithIncomming)</a></td>
+	<td class="summary">Returns the relative strength of the army.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#AiArmy:DropProducer">AiArmy:DropProducer (_ScriptName)</a></td>
+	<td class="summary">Removes the producer from the army.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#AiArmy:GetArmyTroops">AiArmy:GetArmyTroops (_TroopID)</a></td>
+	<td class="summary">Checks if the passed entity ID is member of the army.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#AiArmy:IsDead">AiArmy:IsDead ()</a></td>
+	<td class="summary">Checks if an army is dead.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#AiArmy:IsFighting">AiArmy:IsFighting ()</a></td>
+	<td class="summary">Checks if an army is fighting.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#AiArmy:IsInArmy">AiArmy:IsInArmy (_TroopID)</a></td>
+	<td class="summary">Checks if the passed entity ID is member of the army.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#AiArmy:IsIncomming">AiArmy:IsIncomming (_TroopID)</a></td>
+	<td class="summary">Checks if the passed entity ID is an incomming member.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#AiArmy:IsMoving">AiArmy:IsMoving ()</a></td>
+	<td class="summary">Checks if an army is moving.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#AiArmy:IsTroopFighting">AiArmy:IsTroopFighting (_TroopID)</a></td>
+	<td class="summary">Checks if a troop of the army is fighting.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#AiArmy:IsTroopMoving">AiArmy:IsTroopMoving (_TroopID)</a></td>
+	<td class="summary">Checks if a troop of the army is moving.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#AiArmy:RemoveEntity">AiArmy:RemoveEntity (_TroopID)</a></td>
+	<td class="summary">Removes an entity from the army.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#AiArmy:RemoveIncommingEntity">AiArmy:RemoveIncommingEntity (_TroopID)</a></td>
+	<td class="summary">Removes an entity only from the incomming list of the army.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#AiArmy:SetDirectlyTargeting">AiArmy:SetDirectlyTargeting (_Flag)</a></td>
+	<td class="summary">Switches the targeting mode between accurate and inaccurate.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#AiArmy:SetHiddenFromAI">AiArmy:SetHiddenFromAI (_Flag)</a></td>
+	<td class="summary">Hides the army from the AI.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#AiArmy:SetIsDead">AiArmy:SetIsDead (_Flag)</a></td>
+	<td class="summary">Sets the IsDead flag of the army.</td>
+	</tr>
+</table>
+<h2><a href="#Calculator">Calculator</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#AiArmy:SetArmyFrontCalculator">AiArmy:SetArmyFrontCalculator (_Function)</a></td>
+	<td class="summary">Sets the function to calculate the army front position.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#AiArmy:SetArmyOrientationCalculator">AiArmy:SetArmyOrientationCalculator (_Function)</a></td>
+	<td class="summary">Sets the function to calculate the army rotation.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#AiArmy:SetEnemiesInAreaDetector">AiArmy:SetEnemiesInAreaDetector (_Function)</a></td>
+	<td class="summary">Sets the function to detect enemies in an area.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#AiArmy:SetEnemyPriorityComperator">AiArmy:SetEnemyPriorityComperator (_Function)</a></td>
+	<td class="summary">Sets the function to sort the list of enemies by priority.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#AiArmy:SetTargetThreatFactorComperator">AiArmy:SetTargetThreatFactorComperator (_Function)</a></td>
+	<td class="summary">Sets the function target enemies by priority.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#AiArmy:SetTroopFormationSelector">AiArmy:SetTroopFormationSelector (_Function)</a></td>
+	<td class="summary">Decides on the formation of the troop.</td>
+	</tr>
+</table>
+<h2><a href="#AiArmyBehavior">AiArmyBehavior</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#AiArmyBehavior">AiArmyBehavior</a></td>
+	<td class="summary">List of possible behavior for armies.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#AiArmyBehavior:Create">AiArmyBehavior:Create (_Type, _Action, _Reset)</a></td>
+	<td class="summary">Creates a new custom behavior.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#AiArmyBehavior:New">AiArmyBehavior:New (_Type, ..., _Loop)</a></td>
+	<td class="summary">Creates a new instance of an behavior.</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Properties"></a>Properties</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "AiArmy:AddEntity"></a>
+    <strong>AiArmy:AddEntity (_TroopID, _Instantly)</strong>
+    </dt>
+    <dd>
+    Adds an entity to the army.
+<p> Currently the army supports only leaders and cannons. Scouts and thieves are
+ tolerated but there is no distinction between them and the normal leaders.
+ Migrating troops are advancing aggressive to the central point of the army,
+ attacking any enemy in sight.
+<p> <b>Note:</b> Adding an entity instantly can cause the problem that the
+ center of the army becomes way off and targeting might not work.
+<p> <b>Note:</b> If the regular members have been defeated the home position
+ becomes the new central point and troops will migrating there.
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">_TroopID</span>
+            <span class="types"><span class="type">number</span></span>
+           ID of troop
+        </li>
+        <li><span class="parameter">_Instantly</span>
+            <span class="types"><span class="type">boolean</span></span>
+         Add entity in an instant
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "AiArmy:AddProducer"></a>
+    <strong>AiArmy:AddProducer (_Producer)</strong>
+    </dt>
+    <dd>
+    Adds the producer to the army.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">_Producer</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+         Producer instance
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "AiArmy:CalculateStrength"></a>
+    <strong>AiArmy:CalculateStrength (_WithIncomming)</strong>
+    </dt>
+    <dd>
+    Returns the relative strength of the army.
+<p> The number represents the persentage of all troops that are still alive.
+ The value might be greater than 1 if troops have been added externally and
+ are still migrating ot the army.
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">_WithIncomming</span>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+        Current relative strength
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "AiArmy:DropProducer"></a>
+    <strong>AiArmy:DropProducer (_ScriptName)</strong>
+    </dt>
+    <dd>
+    Removes the producer from the army.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">_ScriptName</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         Name of producer
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "AiArmy:GetArmyTroops"></a>
+    <strong>AiArmy:GetArmyTroops (_TroopID)</strong>
+    </dt>
+    <dd>
+    Checks if the passed entity ID is member of the army.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">_TroopID</span>
+            <span class="types"><span class="type">number</span></span>
+         ID of troop
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+        Current army members
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "AiArmy:IsDead"></a>
+    <strong>AiArmy:IsDead ()</strong>
+    </dt>
+    <dd>
+    Checks if an army is dead.
+<p> An army is dead when all of their producers are destroyed. Additionally the
+ army can stay alive until every member is killed.
+<p> <b>Note:</b> Selfrecruiting armies will never be dead. Check player insted.
+
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">boolean</span></span>
+        Army is dead
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "AiArmy:IsFighting"></a>
+    <strong>AiArmy:IsFighting ()</strong>
+    </dt>
+    <dd>
+    Checks if an army is fighting.  If any member is fighting then the army is
+ fighting.
+
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">boolean</span></span>
+        Army is fighting
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "AiArmy:IsInArmy"></a>
+    <strong>AiArmy:IsInArmy (_TroopID)</strong>
+    </dt>
+    <dd>
+    Checks if the passed entity ID is member of the army.
+<p> <b>Note:</b> Troops only count as army member if they are added to the
+ troops. Incomming troops do not count as in the army.
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">_TroopID</span>
+            <span class="types"><span class="type">number</span></span>
+         ID of troop
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">boolean</span></span>
+        Is in army
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "AiArmy:IsIncomming"></a>
+    <strong>AiArmy:IsIncomming (_TroopID)</strong>
+    </dt>
+    <dd>
+    Checks if the passed entity ID is an incomming member.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">_TroopID</span>
+            <span class="types"><span class="type">number</span></span>
+         ID of troop
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">boolean</span></span>
+        Is in army
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "AiArmy:IsMoving"></a>
+    <strong>AiArmy:IsMoving ()</strong>
+    </dt>
+    <dd>
+    Checks if an army is moving.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">boolean</span></span>
+        Army is moving
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "AiArmy:IsTroopFighting"></a>
+    <strong>AiArmy:IsTroopFighting (_TroopID)</strong>
+    </dt>
+    <dd>
+    Checks if a troop of the army is fighting.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">_TroopID</span>
+            <span class="types"><span class="type">number</span></span>
+         ID of troop
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">boolean</span></span>
+        Troop is fighting
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "AiArmy:IsTroopMoving"></a>
+    <strong>AiArmy:IsTroopMoving (_TroopID)</strong>
+    </dt>
+    <dd>
+    Checks if a troop of the army is moving.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">_TroopID</span>
+            <span class="types"><span class="type">number</span></span>
+         ID of troop
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">boolean</span></span>
+        Troop is moving
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "AiArmy:RemoveEntity"></a>
+    <strong>AiArmy:RemoveEntity (_TroopID)</strong>
+    </dt>
+    <dd>
+    Removes an entity from the army.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">_TroopID</span>
+            <span class="types"><span class="type">number</span></span>
+         ID of troop
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "AiArmy:RemoveIncommingEntity"></a>
+    <strong>AiArmy:RemoveIncommingEntity (_TroopID)</strong>
+    </dt>
+    <dd>
+    Removes an entity only from the incomming list of the army.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">_TroopID</span>
+            <span class="types"><span class="type">number</span></span>
+         ID of troop
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "AiArmy:SetDirectlyTargeting"></a>
+    <strong>AiArmy:SetDirectlyTargeting (_Flag)</strong>
+    </dt>
+    <dd>
+    Switches the targeting mode between accurate and inaccurate.  Accurate means
+ ranged troops will target enemies at max range. Inaccurate on the other hand
+ makes them behave normally.
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">_Flag</span>
+            <span class="types"><span class="type">boolean</span></span>
+         Direct targeting flag
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "AiArmy:SetHiddenFromAI"></a>
+    <strong>AiArmy:SetHiddenFromAI (_Flag)</strong>
+    </dt>
+    <dd>
+    Hides the army from the AI.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">_Flag</span>
+            <span class="types"><span class="type">boolean</span></span>
+         Hidden flag
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "AiArmy:SetIsDead"></a>
+    <strong>AiArmy:SetIsDead (_Flag)</strong>
+    </dt>
+    <dd>
+    Sets the IsDead flag of the army.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">_Flag</span>
+            <span class="types"><span class="type">boolean</span></span>
+         Army defeated flag
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Calculator"></a>Calculator</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "AiArmy:SetArmyFrontCalculator"></a>
+    <strong>AiArmy:SetArmyFrontCalculator (_Function)</strong>
+    </dt>
+    <dd>
+    Sets the function to calculate the army front position.  The army will search
+ enemies always from the front and not from their center.
+<p> The function is called with the following parameters:
+ <table border="1">
+ <tr><td><b>Parameter</b></td><td><b>Type</b></td></tr>
+ <tr><td>self</td><td>Army object instance</td></tr>
+ </table>
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">_Function</span>
+            <span class="types"><span class="type">function</span></span>
+         Calculate army front
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+        Front position of army
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "AiArmy:SetArmyOrientationCalculator"></a>
+    <strong>AiArmy:SetArmyOrientationCalculator (_Function)</strong>
+    </dt>
+    <dd>
+    Sets the function to calculate the army rotation.
+<p> The function is called with the following parameters:
+ <table border="1">
+ <tr><td><b>Parameter</b></td><td><b>Type</b></td></tr>
+ <tr><td>self</td><td>Army object instance</td></tr>
+ <tr><td>_TargetID</td><td>number</td></tr>
+ <tr><td>_TroopID</td><td>number</td></tr>
+ </table>
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">_Function</span>
+            <span class="types"><span class="type">function</span></span>
+         Calculate army rotation
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+        Army rotation
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "AiArmy:SetEnemiesInAreaDetector"></a>
+    <strong>AiArmy:SetEnemiesInAreaDetector (_Function)</strong>
+    </dt>
+    <dd>
+    Sets the function to detect enemies in an area.  To reset to default pass
+ nil as parameter.
+<p> The function is called with the following parameters:
+ <table border="1">
+ <tr><td><b>Parameter</b></td><td><b>Type</b></td></tr>
+ <tr><td>self</td><td>Army object instance</td></tr>
+ <tr><td>_Position</td><td>number or table</td></tr>
+ <tr><td>_Range</td><td>number</td></tr>
+ <tr><td>_TroopID</td><td>number</td></tr>
+ </table>
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">_Function</span>
+            <span class="types"><span class="type">function</span></span>
+         Function to detect enemies
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+        List of enemies in area
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "AiArmy:SetEnemyPriorityComperator"></a>
+    <strong>AiArmy:SetEnemyPriorityComperator (_Function)</strong>
+    </dt>
+    <dd>
+    Sets the function to sort the list of enemies by priority.  To reset to
+ default pass nil as parameter.
+<p> The function is called with the following parameters:
+ <table border="1">
+ <tr><td><b>Parameter</b></td><td><b>Type</b></td></tr>
+ <tr><td>self</td><td>Army object instance</td></tr>
+ <tr><td>_TroopID</td><td>number</td></tr>
+ <tr><td>_EnemyID1</td><td>number</td></tr>
+ <tr><td>_EnemyID2</td><td>number</td></tr>
+ </table>
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">_Function</span>
+            <span class="types"><span class="type">function</span></span>
+         Function to detect enemies
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+        Sorted enemy list
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "AiArmy:SetTargetThreatFactorComperator"></a>
+    <strong>AiArmy:SetTargetThreatFactorComperator (_Function)</strong>
+    </dt>
+    <dd>
+    Sets the function target enemies by priority.  To reset to
+ default pass nil as parameter.
+<p> The function is called with the following parameters:
+ <table border="1">
+ <tr><td><b>Parameter</b></td><td><b>Type</b></td></tr>
+ <tr><td>self</td><td>Army object instance</td></tr>
+ <tr><td>_TargetID</td><td>number</td></tr>
+ <tr><td>_TroopID</td><td>number</td></tr>
+ </table>
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">_Function</span>
+            <span class="types"><span class="type">function</span></span>
+         Function to calculate thread factor
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+        Enemy cost factor
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "AiArmy:SetTroopFormationSelector"></a>
+    <strong>AiArmy:SetTroopFormationSelector (_Function)</strong>
+    </dt>
+    <dd>
+    Decides on the formation of the troop.  To reset to default pass
+ nil as parameter.
+<p> The function is called with the following parameters:
+ <table border="1">
+ <tr><td><b>Parameter</b></td><td><b>Type</b></td></tr>
+ <tr><td>self</td><td>Army object instance</td></tr>
+ <tr><td>_TroopID</td><td>number</td></tr>
+ </table>
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">_Function</span>
+            <span class="types"><span class="type">function</span></span>
+         Function to detect enemies
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="AiArmyBehavior"></a>AiArmyBehavior</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "AiArmyBehavior"></a>
+    <strong>AiArmyBehavior</strong>
+    </dt>
+    <dd>
+    List of possible behavior for armies.
+<p> <b>Note:</b> If an army is attacked by the enemy it will always enter Battle
+ when not already battleing. In that case the position of the attacker is used
+ as anchor. The new created behavior will be set as the current behavior and
+ always the first in the queue.
+
+
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">Idle</span>
+            The army is doing nothing.
+        </li>
+        <li><span class="parameter">Move</span>
+            The army walks to the defined destination. Enemies are ignored
+                unless they attack the army.
+        </li>
+        <li><span class="parameter">Attack</span>
+          The army walkst to the defined destination and will execute
+                Battle with outer range as area on arrival. While walking, the
+                army will always be aggressive.
+        </li>
+        <li><span class="parameter">Battle</span>
+          The army is attacking all enemies in the area. If all enemies
+                are defeated, the behavior succeeds.
+        </li>
+        <li><span class="parameter">Guard</span>
+           The army is staying at a position for awhile. If enemies
+                are detected, Battle is executed until enemies are defeated.
+                Setting guard time to -1 results in guarding forever.
+        </li>
+        <li><span class="parameter">Retreat</span>
+         The army is retreating to the home base. Retreat automatically
+                adds Refill after success.
+        </li>
+        <li><span class="parameter">Refill</span>
+          The army is trying to replace fallen leaders and buy new
+                soldiers for the others.
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "AiArmyBehavior:Create"></a>
+    <strong>AiArmyBehavior:Create (_Type, _Action, _Reset)</strong>
+    </dt>
+    <dd>
+    Creates a new custom behavior.
+<p> A custom behavior must have an unique name. You cannot create a behavior that
+ already exists.
+<p> A custom behavior needs an action function. First 3 parameter are fixed. The
+ function receives the self reference, the army reference and the loop flag.
+ All other parameters are optional. You can pass them like you would do with
+ default behaviors.
+<p> The reset function is optional and will be called after a behavior finished
+ and is removed (and might be reattached due to be looped) from the queue. It
+ receives the self reference as parameter.
+<p> After you created the behavior you can add fields by calling :AddField on the
+ behavior. A field can be accessey by using the self reference. Type
+ self.m_Data.Fieldname to access the field. The main difference to parameters
+ is that they won't be passed when the action is called. Use them to control
+ states of your behavior.
+<p> <b>Note:</b> This feature is considered expert level! The default behavior
+ will be enough in most cases.
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">_Type</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+           Name of behavior
+        </li>
+        <li><span class="parameter">_Action</span>
+            <span class="types"><span class="type">function</span></span>
+         Function called on each tick
+        </li>
+        <li><span class="parameter">_Reset</span>
+            <span class="types"><span class="type">function</span></span>
+          (optional) Function called when dequeued
+        </li>
+    </ul>
+
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="../modules/lib.ai.aiarmy.html#AiArmyBehavior:New">AiArmyBehavior:New</a>
+    </ul>
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">-- Create behavior
+</span>AiArmyBehavior:Create(<span class="string">"MyBehavior"</span>, MyBehaviorAction, MyBehaviorReset);
+<span class="comment">-- Add a control field after creation
+</span>AiArmyBehavior.MyBehavior:AddField(<span class="string">"Key"</span>, <span class="number">123</span>);
+<span class="comment">-- Instanciate the behavior with parameters
+</span>AiArmyBehavior:New(<span class="string">"MyBehavior"</span>, <span class="keyword">false</span>, <span class="number">1</span>, <span class="string">"Dario"</span>);
+<span class="comment">-- Check if behavior is executed
+</span><span class="keyword">if</span> _Army:IsExecutingBehavior(<span class="string">"MyBehavior"</span>) <span class="keyword">then</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "AiArmyBehavior:New"></a>
+    <strong>AiArmyBehavior:New (_Type, ..., _Loop)</strong>
+    </dt>
+    <dd>
+    Creates a new instance of an behavior.
+<p> A behavior represents (in this case) a command that is together with others
+ put into a queue where they will be processed one after another. Some of them
+ can create new behaviors on their own and put them into the queue.
+ A behavior is finished when the action returns true. Behaviors can also be
+ executed in a loop. After one finished, it will automaticaly be reattached
+ at the end of the queue.
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">_Type</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         Name of behavior
+        </li>
+        <li><span class="parameter">...</span>
+           List of parameters
+        </li>
+        <li><span class="parameter">_Loop</span>
+            <span class="types"><span class="type">boolean</span></span>
+         Behavior is reattached after completion
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+        Instanciated behavior
+    </ol>
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="../modules/lib.ai.aiarmy.html#AiArmyBehavior:Create">AiArmyBehavior:Create</a>
+    </ul>
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">-- Idle
+</span>AiArmyBehavior:New(<span class="string">"Idle"</span>, _Loop);
+<span class="comment">-- Move
+</span>AiArmyBehavior:New(<span class="string">"Move"</span>, _Target, _Distance, _Loop);
+<span class="comment">-- Attack
+</span>AiArmyBehavior:New(<span class="string">"Attack"</span>, _Target, _Distance, _Loop);
+<span class="comment">-- Battle
+</span>AiArmyBehavior:New(<span class="string">"Battle"</span>, _Position, _Distance, _Loop);
+<span class="comment">-- Guard
+</span>AiArmyBehavior:New(<span class="string">"Guard"</span>, _Position, _Distance, _Time, _Loop);
+<span class="comment">-- Retreat
+</span>AiArmyBehavior:New(<span class="string">"Retreat"</span>);
+<span class="comment">-- Refill
+</span>AiArmyBehavior:New(<span class="string">"Refill"</span>);</pre>
+    </ul>
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i style="float:right;">Last updated 2021-10-01 22:17:04 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+
+<script>
+    window.onscroll = function() {scrollFunction()};
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("back2top").style.display = "block";
+        } else {
+            document.getElementById("back2top").style.display = "none";
+        }
+    }
+
+    function topFunction() {
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    }
+</script>
+
+</body>
+</html>

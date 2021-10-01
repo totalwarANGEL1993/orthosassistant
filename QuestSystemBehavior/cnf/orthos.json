@@ -1,0 +1,103 @@
+{
+  "Version": "2.0.0",
+  "BaseDirectory": "lua/orthus/lua/qsb/",
+  
+  "Files": [
+    {
+      "Source":      "loader.lua",
+      "Destination": "qsb/loader.lua"
+    },
+    {
+      "Source":      "lib/oop.lua",
+      "Destination": "qsb/lib/oop.lua"
+    },
+
+
+
+    {
+      "Source":      "lib/ai/aiarmy.lua",
+      "Destination": "qsb/lib/ai/aiarmy.lua"
+    },
+    {
+      "Source":      "lib/ai/aicontroller.lua",
+      "Destination": "qsb/lib/ai/aicontroller.lua"
+    },
+    {
+      "Source":      "lib/ai/aitrooprecruiter.lua",
+      "Destination": "qsb/lib/ai/aitrooprecruiter.lua"
+    },
+    {
+      "Source":      "lib/ai/aitroopspawner.lua",
+      "Destination": "qsb/lib/ai/aitroopspawner.lua"
+    },
+
+    {
+      "Source":      "lib/quest/questbehavior.lua",
+      "Destination": "qsb/lib/quest/questbehavior.lua"
+    },
+    {
+      "Source":      "lib/quest/questbriefing.lua",
+      "Destination": "qsb/lib/quest/questbriefing.lua"
+    },
+    {
+      "Source":      "lib/quest/questcore.lua",
+      "Destination": "qsb/lib/quest/questcore.lua"
+    },
+    {
+      "Source":      "lib/quest/questdebug.lua",
+      "Destination": "qsb/lib/quest/questdebug.lua"
+    },
+    {
+      "Source":      "lib/quest/questsync.lua",
+      "Destination": "qsb/lib/quest/questsync.lua"
+    },
+    {
+      "Source":      "lib/quest/questsystem.lua",
+      "Destination": "qsb/lib/quest/questsystem.lua"
+    },
+    {
+      "Source":      "lib/quest/questtools.lua",
+      "Destination": "qsb/lib/quest/questtools.lua"
+    },
+    {
+      "Source":      "lib/quest/questtreasure.lua",
+      "Destination": "qsb/lib/quest/questtreasure.lua"
+    },
+
+    {
+      "Source":      "lib/ui/interaction.lua",
+      "Destination": "qsb/lib/ui/interaction.lua"
+    },
+    {
+      "Source":      "lib/ui/onscreeninfo.lua",
+      "Destination": "qsb/lib/ui/onscreeninfo.lua"
+    },
+    {
+      "Source":      "lib/ui/optionsmenu.lua",
+      "Destination": "qsb/lib/ui/optionsmenu.lua"
+    },
+    {
+      "Source":      "lib/ui/speed.lua",
+      "Destination": "qsb/lib/ui/speed.lua"
+    },
+    {
+      "Source":      "lib/ui/workplace.lua",
+      "Destination": "qsb/lib/ui/workplace.lua"
+    },
+
+
+
+    {
+      "Source":      "ext/loader.lua",
+      "Destination": "qsb/ext/loader.lua"
+    },
+    {
+      "Source":      "ext/metatable.lua",
+      "Destination": "qsb/ext/metatable.lua"
+    },
+    {
+      "Source":      "ext/svlib.lua",
+      "Destination": "qsb/ext/svlib.lua"
+    }
+  ]
+}

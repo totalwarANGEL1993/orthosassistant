@@ -1,0 +1,274 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Reference</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<button onclick="topFunction()" id="back2top" title="Nach oben scrollen">&#11014</button>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>ldoc</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+<li><a href="#AiTroopSpawner">AiTroopSpawner</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/ext.loader.html">ext.loader</a></li>
+  <li><a href="../modules/lib.ai.aiarmy.html">lib.ai.aiarmy</a></li>
+  <li><a href="../modules/lib.ai.aicontroller.html">lib.ai.aicontroller</a></li>
+  <li><strong>lib.ai.aitrooprecruiter</strong></li>
+  <li><a href="../modules/lib.ai.aitroopspawner.html">lib.ai.aitroopspawner</a></li>
+  <li><a href="../modules/lib.oop.html">lib.oop</a></li>
+  <li><a href="../modules/lib.quest.questbehavior.html">lib.quest.questbehavior</a></li>
+  <li><a href="../modules/lib.quest.questbriefing.html">lib.quest.questbriefing</a></li>
+  <li><a href="../modules/lib.quest.questcore.html">lib.quest.questcore</a></li>
+  <li><a href="../modules/lib.quest.questdebug.html">lib.quest.questdebug</a></li>
+  <li><a href="../modules/lib.quest.questsync.html">lib.quest.questsync</a></li>
+  <li><a href="../modules/lib.quest.questsystem.html">lib.quest.questsystem</a></li>
+  <li><a href="../modules/lib.quest.questtools.html">lib.quest.questtools</a></li>
+  <li><a href="../modules/lib.quest.questtreasure.html">lib.quest.questtreasure</a></li>
+  <li><a href="../modules/lib.ui.interaction.html">lib.ui.interaction</a></li>
+  <li><a href="../modules/lib.ui.onscreeninfo.html">lib.ui.onscreeninfo</a></li>
+  <li><a href="../modules/lib.ui.optionsmenu.html">lib.ui.optionsmenu</a></li>
+  <li><a href="../modules/lib.ui.speed.html">lib.ui.speed</a></li>
+  <li><a href="../modules/lib.ui.workplace.html">lib.ui.workplace</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>lib.ai.aitrooprecruiter</code></h1>
+<p>This module creates troop producer for armies or other purposes.</p>
+<p>
+<p> This producer type is an recruiter. This means the AI must have the resources
+ to build the unit in buildings like barracks, archeries, stables or foundrys.
+ The AI can also cheat the resources, if needed.
+<p> Those soldiers/cannons must be fully trained/constructed before they're
+ add to the producers list of created entities.
+<p> <b>Required modules:</b>
+ <ul>
+ <li>qsb.oop</li>
+ <li>qsb.quest.questsync</li>
+ <li>qsb.quest.questtools</li>
+ </ul>
+</p>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#CreateTroopRecruiter">CreateTroopRecruiter (_Data)</a></td>
+	<td class="summary">Creates an new producer that creates units by recruiting them.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#DropTroopRecruiter">DropTroopRecruiter (_ScriptName)</a></td>
+	<td class="summary">Destroys an producer.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetTroopRecruiter">GetTroopRecruiter (_ScriptName)</a></td>
+	<td class="summary">Returns the instance of the producer if it exists.</td>
+	</tr>
+</table>
+<h2><a href="#AiTroopSpawner">AiTroopSpawner</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#AiTroopRecruiter:CreateTroop">AiTroopRecruiter:CreateTroop (_IgnoreCreated)</a></td>
+	<td class="summary">Creates an new unit.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#AiTroopRecruiter:GetTroop">AiTroopRecruiter:GetTroop ()</a></td>
+	<td class="summary">Obtains the next unit from the producer.</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "CreateTroopRecruiter"></a>
+    <strong>CreateTroopRecruiter (_Data)</strong>
+    </dt>
+    <dd>
+    Creates an new producer that creates units by recruiting them.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">_Data</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+         Description
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+        Created instance
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "DropTroopRecruiter"></a>
+    <strong>DropTroopRecruiter (_ScriptName)</strong>
+    </dt>
+    <dd>
+    Destroys an producer.
+
+ <b>Note</b>: The producer should first be removed from all armies!
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">_ScriptName</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         Script name of building
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetTroopRecruiter"></a>
+    <strong>GetTroopRecruiter (_ScriptName)</strong>
+    </dt>
+    <dd>
+    Returns the instance of the producer if it exists.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">_ScriptName</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         Script name of building
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+        Producer instance
+    </ol>
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="AiTroopSpawner"></a>AiTroopSpawner</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "AiTroopRecruiter:CreateTroop"></a>
+    <strong>AiTroopRecruiter:CreateTroop (_IgnoreCreated)</strong>
+    </dt>
+    <dd>
+    Creates an new unit.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">_IgnoreCreated</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         Ignore already created units
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "AiTroopRecruiter:GetTroop"></a>
+    <strong>AiTroopRecruiter:GetTroop ()</strong>
+    </dt>
+    <dd>
+    Obtains the next unit from the producer.
+<p> If there is no troops ready 0 is returned.
+
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+        ID of troop or 0 if not available
+    </ol>
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i style="float:right;">Last updated 2021-10-01 22:17:04 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+
+<script>
+    window.onscroll = function() {scrollFunction()};
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("back2top").style.display = "block";
+        } else {
+            document.getElementById("back2top").style.display = "none";
+        }
+    }
+
+    function topFunction() {
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    }
+</script>
+
+</body>
+</html>
