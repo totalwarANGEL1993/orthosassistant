@@ -1,1 +1,3 @@
-Neuste Änderung
+Version Beta 1.5.0
+
+Anpassung der Anwendung für den neuen Siedelwood Updater.
