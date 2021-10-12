@@ -1,3 +1,11 @@
+Version Beta 1.5.1
+
+Es wird ein experimenteller Fix hinzugefügt, damit es keine
+Probleme mehr mit CppLogic bezüglich Schreibung von Ordner-
+und Dateinamen mehr gibt.
+
+------------------------------------------------------------
+
 Version Beta 1.5.0
 
 Anpassung der Anwendung für den neuen Siedelwood Updater.
