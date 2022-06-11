@@ -31,23 +31,18 @@ Script.Load(gvBasePath.. "qsb/lib/ai/aicontroller.lua");
 Script.Load(gvBasePath.. "qsb/ext/loader.lua");
 
 -- try loading lib
-local s5cPath = "maps\\user\\EMS\\tools\\";
-Script.Load(s5cPath.. "s5CommunityLib\\packer\\devLoad.lua");
+Script.Load("data/maps/user/EMS/tools/s5CommunityLib/packer/devload.lua");
 if not mcbPacker then
-    s5cPath = gvBasePath.. "s5c/";
-    Script.Load(s5cPath.. "s5CommunityLib/packer/devload.lua");
+    gvS5cLibPath = gvS5cLibPath or gvBasePath.. "s5c/";
+    Script.Load(gvS5cLibPath.. "s5CommunityLib/packer/devload.lua");
 end
 
 -- only if community lib is found
 if mcbPacker then
     mcbPacker.Paths = {
-        {s5cPath, ".lua"},
-        {s5cPath, ".luac"}
+        {gvS5cLibPath, ".lua"},
+        {gvS5cLibPath, ".luac"}
     };
-
-    mcbPacker.require("s5CommunityLib/fixes/metatable");
-    mcbPacker.require("s5CommunityLib/fixes/TriggerFix");
-    mcbPacker.require("s5CommunityLib/fixes/TriggerFixCppLogicExtension");
 
     mcbPacker.require("s5CommunityLib/tables/ArmorClasses");
     mcbPacker.require("s5CommunityLib/tables/AttachmentTypes");
@@ -57,11 +52,9 @@ if mcbPacker then
     mcbPacker.require("s5CommunityLib/tables/TerrainTypes");
     mcbPacker.require("s5CommunityLib/tables/animTable");
 
-    mcbPacker.require("s5CommunityLib/comfort/entity/SVLib");
     mcbPacker.require("s5CommunityLib/comfort/math/Lerp");
     mcbPacker.require("s5CommunityLib/comfort/math/Polygon");
     mcbPacker.require("s5CommunityLib/comfort/math/Vector");
-    mcbPacker.require("s5CommunityLib/comfort/other/MPSyncer");
     mcbPacker.require("s5CommunityLib/comfort/pos/IsInCone");
     mcbPacker.require("s5CommunityLib/comfort/table/CopyTable");
 end

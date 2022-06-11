@@ -18,11 +18,11 @@
 --
 
 -- Load Metatable fix
--- if metatable == nil then
---     Script.Load(gvBasePath.. "qsb/ext/metatable.lua");
--- end
+if metatable == nil then
+    Script.Load(gvBasePath.. "qsb/ext/metatable.lua");
+end
 -- Scripting Values
--- if SVLib == nil then
---     Script.Load(gvBasePath.. "qsb/ext/svlib.lua");
--- end
+if SVLib == nil then
+    Script.Load(gvBasePath.. "qsb/ext/svlib.lua");
+end
 

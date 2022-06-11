@@ -1,3 +1,9 @@
+Version Beta 1.5.2
+
+Das Abstürzproblem mit der Army wurde behoben.
+
+------------------------------------------------------------
+
 Version Beta 1.5.1
 
 Es wird ein experimenteller Fix hinzugefügt, damit es keine
