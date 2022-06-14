@@ -1,3 +1,20 @@
+Version Beta 1.5.3
+
+Programm
+- Behavior geändert: Reward_AI_EnableArmyAttack
+  * Parameter PlayerID wurde entfernt
+- Behavior geändert: Reward_AI_EnableArmyPatrol
+  * Parameter PlayerID wurde entfernt
+- Behavior geändert: Reward_AI_CreateSpawnArmy
+  * Parameter Typ wurde entfernt
+- Button "Dokumentation" im Hilfe-Tab hinzugefügt.
+
+Bibliothek
+- Optioin zum Abschalten von Angriffen einer Standardarmee
+- Optioin zum Abschalten von Patrolien einer Standardarmee
+
+------------------------------------------------------------
+
 Version Beta 1.5.2
 
 Das Abstürzproblem mit der Army wurde behoben.
