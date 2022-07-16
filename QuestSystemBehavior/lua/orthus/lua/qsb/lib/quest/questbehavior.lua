@@ -30,7 +30,7 @@
 
 -- Quests and tools --
 
-StageQuestResultType = {
+NestedQuestResultType = {
     Success = 1,
     Failure = 2,
     Ignored = 3,
@@ -124,7 +124,7 @@ end
 -- quests have always the same receiver as the master quest. It is possible to
 -- infinitely stack sub quests into each other.
 --
--- <b>Note:</b> Staged quests can be used to structure the mission. Those quests
+-- <b>Note:</b> Nested quests can be used to structure the mission. Those quests
 -- can be manipulated as normal quests can.
 --
 -- @param[type=table] _Data Quest table
@@ -133,8 +133,8 @@ end
 -- @within Methods
 -- @see CreateQuest
 --
--- @usage CreateStagedQuest {
--- 	Name 		= "StagedTraderQuest",
+-- @usage CreateNestedQuest {
+-- 	Name 		= "NestedTraderQuest",
 -- 	Description = {
 -- 		Title = "Die Händler abklappern",
 -- 		Text  = "Sprecht mit allen Händlern und sichert Euch Handelsverträge.",
@@ -168,13 +168,13 @@ end
 -- 		},
 -- 		{
 -- 			Goal_InstantSuccess(),
--- 			Trigger_QuestSuccess("StagedTraderQuest@Stage3", 5),
+-- 			Trigger_QuestSuccess("NestedTraderQuest@Stage3", 5),
 -- 		}
 -- 	},
 -- 	Trigger_Time(5),
 -- };
 --
-function CreateStagedQuest(_Data)
+function CreateNestedQuest(_Data)
     if not _Data.Name then
         Message("DEBUG: One quest has no name!");
         return;
@@ -189,7 +189,7 @@ function CreateStagedQuest(_Data)
         -- configure stage
         _Data.Stages[i].Name = _Data.Stages[i].Name or QuestName.. "@Stage" ..i;
         _Data.Stages[i].Receiver = _Data.Receiver;
-        _Data.Stages[i].Expected = _Data.Stages[i].Expected or StageQuestResultType.Success;
+        _Data.Stages[i].Expected = _Data.Stages[i].Expected or NestedQuestResultType.Success;
         if _Data.Stages[i].Description then
             _Data.Stages[i].Description.Type = FRAGMENTQUEST_OPEN;
             _Data.Stages[i].Description.Info = 1;
@@ -202,7 +202,7 @@ function CreateStagedQuest(_Data)
             table.insert(_Data, Goal_WinQuest(_Data.Stages[i].Name));
         else
             -- Create links for failure type
-            if _Data.Stages[i].Expected == StageQuestResultType.Failure then
+            if _Data.Stages[i].Expected == NestedQuestResultType.Failure then
                 -- link to previous fragment
                 if QuestSystemBehavior:DoesStageContainReprisalQuestBriefing(_Data.Stages[i-1]) then
                     table.insert(_Data.Stages[i], Trigger_Briefing(LastQuestName, "Failure"));
@@ -214,7 +214,7 @@ function CreateStagedQuest(_Data)
             end
 
             -- Create links for success type
-            if _Data.Stages[i].Expected == StageQuestResultType.Success then
+            if _Data.Stages[i].Expected == NestedQuestResultType.Success then
                 -- link to previous fragment
                 if QuestSystemBehavior:DoesStageContainRewardQuestBriefing(_Data.Stages[i-1]) then
                     table.insert(_Data.Stages[i], Trigger_Briefing(LastQuestName, "Success"));
@@ -226,7 +226,7 @@ function CreateStagedQuest(_Data)
             end
 
             -- Create links for ignored result
-            if _Data.Stages[i].Expected == StageQuestResultType.Ignored then
+            if _Data.Stages[i].Expected == NestedQuestResultType.Ignored then
                 -- link to previous fragment
                 if QuestSystemBehavior:DoesStageContainRewardQuestBriefing(_Data.Stages[i-1])
                 or QuestSystemBehavior:DoesStageContainRewardQuestBriefing(_Data.Stages[i-1]) then
@@ -240,19 +240,19 @@ function CreateStagedQuest(_Data)
 
             -- handle failure and success of master
             if i == table.getn(_Data.Stages) then
-                if _Data.Stages[i].Expected == StageQuestResultType.Failure then
+                if _Data.Stages[i].Expected == NestedQuestResultType.Failure then
                     table.insert(_Data.Stages[i], Reprisal_QuestSucceed(QuestName));
-                elseif _Data.Stages[i].Expected == StageQuestResultType.Success then
+                elseif _Data.Stages[i].Expected == NestedQuestResultType.Success then
                     table.insert(_Data.Stages[i], Reward_QuestSucceed(QuestName));
                 else
                     table.insert(_Data.Stages[i], Reward_QuestSucceed(QuestName));
                     table.insert(_Data.Stages[i], Reprisal_QuestSucceed(QuestName));
                 end
             end
-            if _Data.Stages[i].Expected == StageQuestResultType.Failure then
+            if _Data.Stages[i].Expected == NestedQuestResultType.Failure then
                 table.insert(_Data.Stages[i], Reward_QuestFail(QuestName));
             end
-            if _Data.Stages[i].Expected == StageQuestResultType.Success then
+            if _Data.Stages[i].Expected == NestedQuestResultType.Success then
                 table.insert(_Data.Stages[i], Reprisal_QuestFail(QuestName));
             end
         end
@@ -262,7 +262,7 @@ function CreateStagedQuest(_Data)
         table.insert(QuestSystemBehavior.Data.QuestNameToStages[QuestName], LastQuestName);
         -- onion quests are bad style but I will support it
         if _Data.Stages[i].Stages then
-            CreateStagedQuest(_Data.Stages[i]);
+            CreateNestedQuest(_Data.Stages[i]);
         end
         CreateQuest(_Data.Stages[i]);
     end
@@ -321,11 +321,11 @@ end
 
 
 ---
--- Fails the staged quest.
+-- Fails the Nested quest.
 -- @param _QuestName Quest name or ID
 -- @within Methods
 --
-function FailStagedQuest(_QuestName)
+function FailNestedQuest(_QuestName)
     if not QuestSystemBehavior.Data.QuestNameToStages[_QuestName] then
         FailQuest(_QuestName);
         return;
@@ -347,11 +347,11 @@ function StartQuest(_Quest)
 end
 
 ---
--- Triggers the staged quest.
+-- Triggers the Nested quest.
 -- @param _QuestName Quest name or ID
 -- @within Methods
 --
-function StartStagedQuest(_QuestName)
+function StartNestedQuest(_QuestName)
     if not QuestSystemBehavior.Data.QuestNameToStages[_QuestName] then
         StartQuest(_QuestName);
         return;
@@ -373,11 +373,11 @@ function StopQuest(_Quest)
 end
 
 ---
--- Interrupts the staged quest.
+-- Interrupts the Nested quest.
 -- @param _QuestName Quest name or ID
 -- @within Methods
 --
-function StopStagedQuest(_QuestName)
+function StopNestedQuest(_QuestName)
     if not QuestSystemBehavior.Data.QuestNameToStages[_QuestName] then
         StopQuest(_QuestName);
         return;
@@ -400,11 +400,11 @@ function ResetQuest(_Quest)
 end
 
 ---
--- Resets the staged quest.
+-- Resets the Nested quest.
 -- @param _QuestName Quest name or ID
 -- @within Methods
 --
-function ResetStagedQuest(_QuestName)
+function ResetNestedQuest(_QuestName)
     if not QuestSystemBehavior.Data.QuestNameToStages[_QuestName] then
         ResetQuest(_QuestName);
         return;
@@ -429,11 +429,11 @@ function RestartQuest(_Quest)
 end
 
 ---
--- Resets the staged quest and activates it immediately.
+-- Resets the Nested quest and activates it immediately.
 -- @param _QuestName Quest name or ID
 -- @within Methods
 --
-function RestartStagedQuest(_QuestName)
+function RestartNestedQuest(_QuestName)
     for i= 1, table.getn(QuestSystemBehavior.Data.QuestNameToStages[_QuestName]), 1 do
         StopQuest(QuestSystemBehavior.Data.QuestNameToStages[_QuestName][i]);
         if i == 1 then
@@ -456,11 +456,11 @@ function WinQuest(_Quest)
 end
 
 ---
--- Wins the staged quest.
+-- Wins the Nested quest.
 -- @param _QuestName Quest name or ID
 -- @within Methods
 --
-function WinStagedQuest(_QuestName)
+function WinNestedQuest(_QuestName)
     if not QuestSystemBehavior.Data.QuestNameToStages[_QuestName] then
         WinQuest(_QuestName);
         return;
@@ -542,7 +542,7 @@ function QuestSystemBehavior:CreateScriptEvents()
                     Message("Succeed quest: " ..command[2]);
                 end     
                 if QuestSystemBehavior.Data.QuestNameToStages[QuestName] then
-                    WinStagedQuest(QuestName);
+                    WinNestedQuest(QuestName);
                 else
                     WinQuest(QuestName);
                 end
@@ -551,7 +551,7 @@ function QuestSystemBehavior:CreateScriptEvents()
                     Message("Fail quest: " ..command[2]);
                 end
                 if QuestSystemBehavior.Data.QuestNameToStages[QuestName] then
-                    FailStagedQuest(QuestName);
+                    FailNestedQuest(QuestName);
                 else
                     FailQuest(QuestName);
                 end
@@ -560,7 +560,7 @@ function QuestSystemBehavior:CreateScriptEvents()
                     Message("Stop quest: " ..command[2]);
                 end           
                 if QuestSystemBehavior.Data.QuestNameToStages[QuestName] then
-                    StopStagedQuest(QuestName);
+                    StopNestedQuest(QuestName);
                 else
                     StopQuest(QuestName);
                 end
@@ -583,7 +583,7 @@ function QuestSystemBehavior:CreateScriptEvents()
                     Message("Start quest: " ..command[2]);
                 end
                 if QuestSystemBehavior.Data.QuestNameToStages[QuestName] then
-                    StartStagedQuest(QuestName);
+                    StartNestedQuest(QuestName);
                 else
                     StartQuest(QuestName);
                 end
@@ -592,7 +592,7 @@ function QuestSystemBehavior:CreateScriptEvents()
                     Message("Restart quest: " ..command[2]);
                 end
                 if QuestSystemBehavior.Data.QuestNameToStages[QuestName] then
-                    RestartStagedQuest(QuestName);
+                    RestartNestedQuest(QuestName);
                 else
                     RestartQuest(QuestName);
                 end
@@ -650,7 +650,7 @@ end
 -- @local
 --
 function QuestSystemBehavior:OverwriteMapClosingFunctions()
-    if QuestTools.GetExtensionNumber() <= 2 then
+    if GetExtensionNumber() <= 2 then
         GUIAction_RestartMap_Orig_QuestSystemBehavior = GUIAction_RestartMap;
         GUIAction_RestartMap = function()
             QuestSystemBehavior:UnloadS5Hook();
@@ -693,7 +693,7 @@ function QuestSystemBehavior:UnloadS5Hook()
         Message("ERROR: Can not find CppLogic!");
         return;
     end
-    if QuestTools.GetExtensionNumber() <= 2 and CppLogic then
+    if GetExtensionNumber() <= 2 and CppLogic then
         if string.find(Folders.Map, "externalmap") then
             CppLogic.Logic.RemoveTopArchive();
         end
@@ -814,7 +814,7 @@ function b_Goal_MapScriptFunction:CustomFunction(_Quest)
 end
 
 function b_Goal_MapScriptFunction:Reset(_Quest)
-    QuestTools.SaveCall{ResetBehaviorProgress, self};
+    SaveCall{ResetBehaviorProgress, self};
 end
 
 function b_Goal_MapScriptFunction:Debug(_Quest)
@@ -1803,7 +1803,7 @@ function b_Goal_DestroyEnemiesInArea:GetGoalTable()
 end
 
 function b_Goal_DestroyEnemiesInArea:CustomFunction(_Quest)
-    if not QuestTools.AreEnemiesInArea(_Quest.m_Receiver, GetPosition(self.Data.Position), self.Data.AreaSize) then
+    if not AreEnemiesInArea(_Quest.m_Receiver, GetPosition(self.Data.Position), self.Data.AreaSize) then
         return true;
     end
 end
@@ -1979,7 +1979,7 @@ function b_Reprisal_Briefing:GetReprisalTable()
 end
 
 function b_Reprisal_Briefing:CustomFunction(_Quest)
-    _Quest.m_FailureBriefing = QuestTools.SaveCall{
+    _Quest.m_FailureBriefing = SaveCall{
         _G[self.Data.Briefing],
         _Quest.m_Receiver,
         ErrorHandler = function() return -1; end
@@ -2553,7 +2553,7 @@ function b_Reward_Briefing:AddParameter(_Index, _Parameter)
 end
 
 function b_Reward_Briefing:CustomFunction(_Quest)
-    _Quest.m_SuccessBriefing = QuestTools.SaveCall{
+    _Quest.m_SuccessBriefing = SaveCall{
         _G[self.Data.Briefing],
         _Quest.m_Receiver,
         ErrorHandler = function() return -1; end
@@ -3183,7 +3183,7 @@ end
 
 function b_Reward_MoveAndVanish:CustomFunction(_Quest)
     self:Reset(_Quest);
-    self.Data.JobID = QuestTools.MoveAndVanish(self.Data.Entity, self.Data.Target);
+    self.Data.JobID = MoveAndVanish(self.Data.Entity, self.Data.Target);
 end
 
 function b_Reward_MoveAndVanish:Debug(_Quest)
@@ -3863,7 +3863,7 @@ function b_Goal_DestroyPlayer:CustomFunction(_Quest)
             AiController:DestroyPlayer(self.Data.PlayerID);
         end
 
-        local PlayerEntities = QuestTools.GetPlayerEntities(self.Data.PlayerID, 0);
+        local PlayerEntities = GetPlayerEntities(self.Data.PlayerID, 0);
         for i= 1, table.getn(PlayerEntities), 1 do 
             if Logic.IsSettler(PlayerEntities[i]) == 1 or Logic.IsBuilding(PlayerEntities[i]) == 1 then
                 if Logic.GetEntityHealth(PlayerEntities[i]) > 0 then
@@ -4611,7 +4611,7 @@ function b_Reward_AI_CreateAIPlayer:GetRewardTable()
 end
 
 function b_Reward_AI_CreateAIPlayer:CustomFunction(_Quest)
-    QuestTools.SaveCall{
+    SaveCall{
         CreateAIPlayer,
         self.Data.PlayerID,
         self.Data.TechLevel,
@@ -4642,7 +4642,7 @@ function b_Reward_AI_CreateAIPlayer:Debug(_Quest)
     end
 
     -- Most expensive check last
-    local PlayerEntities = QuestTools.GetPlayerEntities(self.Data.PlayerID, 0);
+    local PlayerEntities = GetPlayerEntities(self.Data.PlayerID, 0);
     for i= 1, table.getn(PlayerEntities), 1 do
         if Logic.IsBuilding(PlayerEntities[i]) == 1 then
             return false;
@@ -4690,7 +4690,7 @@ function b_Reward_AI_DestroyAIPlayer:GetRewardTable()
 end
 
 function b_Reward_AI_DestroyAIPlayer:CustomFunction(_Quest)
-    QuestTools.SaveCall{DestroyAIPlayer, self.Data.PlayerID};
+    SaveCall{DestroyAIPlayer, self.Data.PlayerID};
 end
 
 function b_Reward_AI_DestroyAIPlayer:Debug(_Quest)
@@ -4760,7 +4760,7 @@ function b_Reward_AI_SetupAIPlayer:GetRewardTable()
 end
 
 function b_Reward_AI_SetupAIPlayer:CustomFunction(_Quest)
-    QuestTools.SaveCall{
+    SaveCall{
         CreateAIPlayer,
         self.Data.PlayerID,
         self.Data.TechLevel,
@@ -4799,7 +4799,7 @@ function b_Reward_AI_SetupAIPlayer:Debug(_Quest)
     end
 
     -- Most expensive check last
-    local PlayerEntities = QuestTools.GetPlayerEntities(self.Data.PlayerID, 0);
+    local PlayerEntities = GetPlayerEntities(self.Data.PlayerID, 0);
     for i= 1, table.getn(PlayerEntities), 1 do
         if Logic.IsBuilding(PlayerEntities[i]) == 1 then
             return false;
@@ -4867,7 +4867,7 @@ function b_Reward_AI_ConstructBuilding:Debug(_Quest)
         dbg(_Quest, self, "Player " ..tostring(self.Data.PlayerID).. " does not have an AI!");
         return true;
     end
-    if not QuestTools.IsInTable(self.Data.BuildingType, Entities) then
+    if not IsInTable(self.Data.BuildingType, Entities) then
         dbg(_Quest, self, "Chosen type does not exist!");
         return true;
     end
@@ -4933,7 +4933,7 @@ function b_Reward_AI_CreateArmy:GetRewardTable()
 end
 
 function b_Reward_AI_CreateArmy:CustomFunction(_Quest)
-    local Army = QuestTools.SaveCall{
+    local Army = SaveCall{
         CreateAIPlayerArmy,
         self.Data.ArmyName,
         self.Data.PlayerID,
@@ -5053,7 +5053,7 @@ function b_Reward_AI_CreateSpawnArmy:CustomFunction(_Quest)
         end
     end
     -- Create army
-    local Army = QuestTools.SaveCall{
+    local Army = SaveCall{
         CreateAIPlayerSpawnArmy,
         self.Data.ArmyName, 
         self.Data.PlayerID, 
@@ -5137,7 +5137,7 @@ end
 
 function b_Reward_AI_DestroyArmy:CustomFunction(_Quest)
     if AiControllerArmyNameToID[self.Data.ArmyName] then
-        QuestTools.SaveCall{ArmyDisband, self.Data.ArmyName, true, false};
+        SaveCall{ArmyDisband, self.Data.ArmyName, true, false};
     end
 end
 
@@ -5192,7 +5192,7 @@ end
 
 function b_Reward_AI_EnableArmyPatrol:CustomFunction(_Quest)
     if AiControllerArmyNameToID[self.Data.ArmyName] then
-        QuestTools.SaveCall{ArmySetExemtFromPatrol, self.Data.ArmyName, not self.Data.Flag};
+        SaveCall{ArmySetExemtFromPatrol, self.Data.ArmyName, not self.Data.Flag};
     end
 end
 
@@ -5243,7 +5243,7 @@ end
 
 function b_Reward_AI_EnableArmyAttack:CustomFunction(_Quest)
     if AiControllerArmyNameToID[self.Data.ArmyName] then
-        QuestTools.SaveCall{ArmySetExemtFromAttack, self.Data.ArmyName, not self.Data.Flag};
+        SaveCall{ArmySetExemtFromAttack, self.Data.ArmyName, not self.Data.Flag};
     end
 end
 

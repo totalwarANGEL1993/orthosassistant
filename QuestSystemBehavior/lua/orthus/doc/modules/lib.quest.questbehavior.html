@@ -92,21 +92,21 @@
 <h2><a href="#Methods">Methods</a></h2>
 <table class="function_list">
 	<tr>
-	<td class="name" nowrap><a href="#CreateQuest">CreateQuest (_Data)</a></td>
-	<td class="summary">Creates an quest from the given table.</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#CreateStagedQuest">CreateStagedQuest (_Data)</a></td>
+	<td class="name" nowrap><a href="#CreateNestedQuest">CreateNestedQuest (_Data)</a></td>
 	<td class="summary">Creates an quest together with an array of fragment quests from the given
  table.</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#FailQuest">FailQuest (_Quest)</a></td>
-	<td class="summary">Fails the quest.</td>
+	<td class="name" nowrap><a href="#CreateQuest">CreateQuest (_Data)</a></td>
+	<td class="summary">Creates an quest from the given table.</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#FailStagedQuest">FailStagedQuest (_QuestName)</a></td>
-	<td class="summary">Fails the staged quest.</td>
+	<td class="name" nowrap><a href="#FailNestedQuest">FailNestedQuest (_QuestName)</a></td>
+	<td class="summary">Fails the Nested quest.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#FailQuest">FailQuest (_Quest)</a></td>
+	<td class="summary">Fails the quest.</td>
 	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#IsS5HookInstalled">IsS5HookInstalled ()</a></td>
@@ -122,44 +122,44 @@
 	<td class="summary">Registers a behavior</td>
 	</tr>
 	<tr>
+	<td class="name" nowrap><a href="#ResetNestedQuest">ResetNestedQuest (_QuestName)</a></td>
+	<td class="summary">Resets the Nested quest.</td>
+	</tr>
+	<tr>
 	<td class="name" nowrap><a href="#ResetQuest">ResetQuest (_Quest)</a></td>
 	<td class="summary">Resets the quest.</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#ResetStagedQuest">ResetStagedQuest (_QuestName)</a></td>
-	<td class="summary">Resets the staged quest.</td>
+	<td class="name" nowrap><a href="#RestartNestedQuest">RestartNestedQuest (_QuestName)</a></td>
+	<td class="summary">Resets the Nested quest and activates it immediately.</td>
 	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#RestartQuest">RestartQuest (_Quest)</a></td>
 	<td class="summary">Resets the quest and activates it immediately.</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#RestartStagedQuest">RestartStagedQuest (_QuestName)</a></td>
-	<td class="summary">Resets the staged quest and activates it immediately.</td>
+	<td class="name" nowrap><a href="#StartNestedQuest">StartNestedQuest (_QuestName)</a></td>
+	<td class="summary">Triggers the Nested quest.</td>
 	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#StartQuest">StartQuest (_Quest)</a></td>
 	<td class="summary">Triggers the quest.</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#StartStagedQuest">StartStagedQuest (_QuestName)</a></td>
-	<td class="summary">Triggers the staged quest.</td>
+	<td class="name" nowrap><a href="#StopNestedQuest">StopNestedQuest (_QuestName)</a></td>
+	<td class="summary">Interrupts the Nested quest.</td>
 	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#StopQuest">StopQuest (_Quest)</a></td>
 	<td class="summary">Interrupts the quest.</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#StopStagedQuest">StopStagedQuest (_QuestName)</a></td>
-	<td class="summary">Interrupts the staged quest.</td>
+	<td class="name" nowrap><a href="#WinNestedQuest">WinNestedQuest (_QuestName)</a></td>
+	<td class="summary">Wins the Nested quest.</td>
 	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#WinQuest">WinQuest (_Quest)</a></td>
 	<td class="summary">Wins the quest.</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#WinStagedQuest">WinStagedQuest (_QuestName)</a></td>
-	<td class="summary">Wins the staged quest.</td>
 	</tr>
 </table>
 <h2><a href="#Goals">Goals</a></h2>
@@ -688,6 +688,102 @@
 
     <dl class="function">
     <dt>
+    <a name = "CreateNestedQuest"></a>
+    <strong>CreateNestedQuest (_Data)</strong>
+    </dt>
+    <dd>
+    Creates an quest together with an array of fragment quests from the given
+ table.  The fragments will be executed one after another. If the last fragment
+ is over the quest is finally completed.
+<p> Possible entries for the master quest:
+ <ul>
+ <li><b>Name:</b> Name of master quest</li>
+ <li><b>Receiver:</b> Player that receives the quest</li>
+ <li><b>Time:</b> Time, until the quest is automatically over</li>
+ <li><b>Description:</b> Quest information displayed in the quest book.
+ (Mostly identical to Logic.CreateQuest or Logic.CreateQuestEx)</li>
+ <li><b>Stages:</b> List of subquests</li>
+ </ul>
+ After the fields the behavior constructors for the master quest are called.
+<p> Inside the Stages attribute the sub quests are created. They are written as
+ unnamed tables. They can contain the same fields as the master quest. The sub
+ quests have always the same receiver as the master quest. It is possible to
+ infinitely stack sub quests into each other.
+<p> <b>Note:</b> Nested quests can be used to structure the mission. Those quests
+ can be manipulated as normal quests can.
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">_Data</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+         Quest table
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">number</span></span>
+        Quest id</li>
+        <li>
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+        Quest instance</li>
+    </ol>
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="../modules/lib.quest.questbehavior.html#CreateQuest">CreateQuest</a>
+    </ul>
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">CreateNestedQuest {
+	Name 		= <span class="string">"NestedTraderQuest"</span>,
+	Description = {
+		Title = <span class="string">"Die Händler abklappern"</span>,
+		Text  = <span class="string">"Sprecht mit allen Händlern und sichert Euch Handelsverträge."</span>,
+		Type  = MAINQUEST_OPEN,
+		Info  = <span class="number">1</span>,
+	},
+	Stages      = {
+		{
+			Description = {
+				Title = <span class="string">"Sprecht mit dem ersten Händler"</span>,
+				Text  = <span class="string">""</span>,
+			},
+			Goal_NPC(<span class="string">"trader1"</span>),
+			Reward_Briefing(<span class="string">"Trader1Briefing"</span>),
+		},
+		{
+			Description = {
+				Title = <span class="string">"Sprecht mit dem zweiten Händler"</span>,
+				Text  = <span class="string">""</span>,
+			},
+			Goal_NPC(<span class="string">"trader2"</span>),
+			Reward_Briefing(<span class="string">"Trader1Briefing"</span>),
+		},
+		{
+			Description = {
+				Title = <span class="string">"Sprecht mit dem dritten Händler"</span>,
+				Text  = <span class="string">""</span>,
+			},
+			Goal_NPC(<span class="string">"trader3"</span>),
+			Reward_Briefing(<span class="string">"Trader1Briefing"</span>),
+		},
+		{
+			Goal_InstantSuccess(),
+			Trigger_QuestSuccess(<span class="string">"NestedTraderQuest@Stage3"</span>, <span class="number">5</span>),
+		}
+	},
+	Trigger_Time(<span class="number">5</span>),
+};</pre>
+    </ul>
+
+</dd>
+    <dt>
     <a name = "CreateQuest"></a>
     <strong>CreateQuest (_Data)</strong>
     </dt>
@@ -748,99 +844,23 @@
 
 </dd>
     <dt>
-    <a name = "CreateStagedQuest"></a>
-    <strong>CreateStagedQuest (_Data)</strong>
+    <a name = "FailNestedQuest"></a>
+    <strong>FailNestedQuest (_QuestName)</strong>
     </dt>
     <dd>
-    Creates an quest together with an array of fragment quests from the given
- table.  The fragments will be executed one after another. If the last fragment
- is over the quest is finally completed.
-<p> Possible entries for the master quest:
- <ul>
- <li><b>Name:</b> Name of master quest</li>
- <li><b>Receiver:</b> Player that receives the quest</li>
- <li><b>Time:</b> Time, until the quest is automatically over</li>
- <li><b>Description:</b> Quest information displayed in the quest book.
- (Mostly identical to Logic.CreateQuest or Logic.CreateQuestEx)</li>
- <li><b>Stages:</b> List of subquests</li>
- </ul>
- After the fields the behavior constructors for the master quest are called.
-<p> Inside the Stages attribute the sub quests are created. They are written as
- unnamed tables. They can contain the same fields as the master quest. The sub
- quests have always the same receiver as the master quest. It is possible to
- infinitely stack sub quests into each other.
-<p> <b>Note:</b> Staged quests can be used to structure the mission. Those quests
- can be manipulated as normal quests can.
-
+    Fails the Nested quest.
 
 
     <h3>Parameters:</h3>
     <ul>
-        <li><span class="parameter">_Data</span>
-            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
-         Quest table
+        <li><span class="parameter">_QuestName</span>
+         Quest name or ID
         </li>
     </ul>
 
-    <h3>Returns:</h3>
-    <ol>
-        <li>
-           <span class="types"><span class="type">number</span></span>
-        Quest id</li>
-        <li>
-           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
-        Quest instance</li>
-    </ol>
 
 
-    <h3>See also:</h3>
-    <ul>
-         <a href="../modules/lib.quest.questbehavior.html#CreateQuest">CreateQuest</a>
-    </ul>
 
-    <h3>Usage:</h3>
-    <ul>
-        <pre class="example">CreateStagedQuest {
-	Name 		= <span class="string">"StagedTraderQuest"</span>,
-	Description = {
-		Title = <span class="string">"Die Händler abklappern"</span>,
-		Text  = <span class="string">"Sprecht mit allen Händlern und sichert Euch Handelsverträge."</span>,
-		Type  = MAINQUEST_OPEN,
-		Info  = <span class="number">1</span>,
-	},
-	Stages      = {
-		{
-			Description = {
-				Title = <span class="string">"Sprecht mit dem ersten Händler"</span>,
-				Text  = <span class="string">""</span>,
-			},
-			Goal_NPC(<span class="string">"trader1"</span>),
-			Reward_Briefing(<span class="string">"Trader1Briefing"</span>),
-		},
-		{
-			Description = {
-				Title = <span class="string">"Sprecht mit dem zweiten Händler"</span>,
-				Text  = <span class="string">""</span>,
-			},
-			Goal_NPC(<span class="string">"trader2"</span>),
-			Reward_Briefing(<span class="string">"Trader1Briefing"</span>),
-		},
-		{
-			Description = {
-				Title = <span class="string">"Sprecht mit dem dritten Händler"</span>,
-				Text  = <span class="string">""</span>,
-			},
-			Goal_NPC(<span class="string">"trader3"</span>),
-			Reward_Briefing(<span class="string">"Trader1Briefing"</span>),
-		},
-		{
-			Goal_InstantSuccess(),
-			Trigger_QuestSuccess(<span class="string">"StagedTraderQuest@Stage3"</span>, <span class="number">5</span>),
-		}
-	},
-	Trigger_Time(<span class="number">5</span>),
-};</pre>
-    </ul>
 
 </dd>
     <dt>
@@ -854,26 +874,6 @@
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">_Quest</span>
-         Quest name or ID
-        </li>
-    </ul>
-
-
-
-
-
-</dd>
-    <dt>
-    <a name = "FailStagedQuest"></a>
-    <strong>FailStagedQuest (_QuestName)</strong>
-    </dt>
-    <dd>
-    Fails the staged quest.
-
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">_QuestName</span>
          Quest name or ID
         </li>
     </ul>
@@ -948,6 +948,26 @@
 
 </dd>
     <dt>
+    <a name = "ResetNestedQuest"></a>
+    <strong>ResetNestedQuest (_QuestName)</strong>
+    </dt>
+    <dd>
+    Resets the Nested quest.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">_QuestName</span>
+         Quest name or ID
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
     <a name = "ResetQuest"></a>
     <strong>ResetQuest (_Quest)</strong>
     </dt>
@@ -968,11 +988,11 @@
 
 </dd>
     <dt>
-    <a name = "ResetStagedQuest"></a>
-    <strong>ResetStagedQuest (_QuestName)</strong>
+    <a name = "RestartNestedQuest"></a>
+    <strong>RestartNestedQuest (_QuestName)</strong>
     </dt>
     <dd>
-    Resets the staged quest.
+    Resets the Nested quest and activates it immediately.
 
 
     <h3>Parameters:</h3>
@@ -1008,11 +1028,11 @@
 
 </dd>
     <dt>
-    <a name = "RestartStagedQuest"></a>
-    <strong>RestartStagedQuest (_QuestName)</strong>
+    <a name = "StartNestedQuest"></a>
+    <strong>StartNestedQuest (_QuestName)</strong>
     </dt>
     <dd>
-    Resets the staged quest and activates it immediately.
+    Triggers the Nested quest.
 
 
     <h3>Parameters:</h3>
@@ -1048,11 +1068,11 @@
 
 </dd>
     <dt>
-    <a name = "StartStagedQuest"></a>
-    <strong>StartStagedQuest (_QuestName)</strong>
+    <a name = "StopNestedQuest"></a>
+    <strong>StopNestedQuest (_QuestName)</strong>
     </dt>
     <dd>
-    Triggers the staged quest.
+    Interrupts the Nested quest.
 
 
     <h3>Parameters:</h3>
@@ -1088,11 +1108,11 @@
 
 </dd>
     <dt>
-    <a name = "StopStagedQuest"></a>
-    <strong>StopStagedQuest (_QuestName)</strong>
+    <a name = "WinNestedQuest"></a>
+    <strong>WinNestedQuest (_QuestName)</strong>
     </dt>
     <dd>
-    Interrupts the staged quest.
+    Wins the Nested quest.
 
 
     <h3>Parameters:</h3>
@@ -1118,26 +1138,6 @@
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">_Quest</span>
-         Quest name or ID
-        </li>
-    </ul>
-
-
-
-
-
-</dd>
-    <dt>
-    <a name = "WinStagedQuest"></a>
-    <strong>WinStagedQuest (_QuestName)</strong>
-    </dt>
-    <dd>
-    Wins the staged quest.
-
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">_QuestName</span>
          Quest name or ID
         </li>
     </ul>
@@ -4416,7 +4416,7 @@
 </div> <!-- id="main" -->
 <div id="about">
 <i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
-<i style="float:right;">Last updated 2022-07-16 22:14:07 </i>
+<i style="float:right;">Last updated 2022-07-16 23:10:30 </i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 
