@@ -1,3 +1,11 @@
+Version Beta 1.6.0
+
+- Fehler in der Aktualisierung der Modelle behoben.
+  Alle Models aktualisieren sich jetzt automatisch. Dadurch
+  Entfallen alle "Aktualisieren" Buttons.
+
+------------------------------------------------------------
+
 Version Beta 1.5.4
 
 - KI-Armeen eiern nicht mehr herum

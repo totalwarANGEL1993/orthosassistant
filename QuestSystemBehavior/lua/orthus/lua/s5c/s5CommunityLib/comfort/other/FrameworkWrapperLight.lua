@@ -131,7 +131,7 @@ function FrameworkWrapper.Savegame.IsSaveAllowed()
 	if cutsceneIsActive then
 		return false
 	end
-	if API.IsBriefingActive() and not mcbSaveDuringBriefingAllowed then
+	if IsBriefingActive() and not mcbSaveDuringBriefingAllowed then
 		return false
 	end
 	if CxTools and CxTools.tDelayFuncsJob then

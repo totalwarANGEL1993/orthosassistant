@@ -4831,7 +4831,7 @@ QuestSystemBehavior:RegisterBehavior(b_Reward_AI_SetupAIPlayer);
 -- @within Rewards
 --
 function Reward_AI_ConstructBuilding(...)
-    return b_Reward_AI_CreateArmy:New(unpack(arg));
+    return b_Reward_AI_ConstructBuilding:New(unpack(arg));
 end
 
 b_Reward_AI_ConstructBuilding = {
@@ -5055,13 +5055,13 @@ function b_Reward_AI_CreateSpawnArmy:CustomFunction(_Quest)
     -- Create army
     local Army = SaveCall{
         CreateAIPlayerSpawnArmy,
-        self.Data.ArmyName, 
-        self.Data.PlayerID, 
-        self.Data.Strength, 
-        self.Data.Position, 
+        self.Data.ArmyName,
+        self.Data.PlayerID,
+        self.Data.Strength,
+        self.Data.Position,
         self.Data.LifeThread,
-        self.Data.RodeLength, 
-        self.Data.RespawnTime, 
+        self.Data.RodeLength,
+        self.Data.RespawnTime,
         unpack(TroopTypes)
     };
     if not Army then
