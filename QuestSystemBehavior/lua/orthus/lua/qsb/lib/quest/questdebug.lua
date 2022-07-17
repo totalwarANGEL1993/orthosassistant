@@ -85,8 +85,8 @@ function QuestDebug:OverrideQuestSystemToCheckBehavior()
     QuestTemplate.ApplyCallbacks = function(self, _Behavior, _ResultType)
         if _Behavior[1] == Callbacks.MapScriptFunction then
             if _Behavior[2][2].Debug then
-                if not _Behavior[2][2]:Debug(self) then
-                    SaveCall{_Behavior[2][1], _Behavior[2][2], self};
+                if _Behavior[2][2]:Debug(self) then
+                    return;
                 end
             end
         end
