@@ -54,10 +54,10 @@ function QuestDebug:Activate(_CheckQuests, _DebugKeys, _DebugShell, _QuestTrace)
     self:CreateCheats();
     self:CreateCheatMethods();
     self:ActivateConsole();
-    self:OverrideQuestSystemTriggerQuest();
+    self:OverrideQuestSystemToCheckBehavior();
 end
 
-function QuestDebug:OverrideQuestSystemTriggerQuest()
+function QuestDebug:OverrideQuestSystemToCheckBehavior()
     QuestTemplate.TriggerOriginal = QuestTemplate.Trigger;
     QuestTemplate.Trigger = function(self)
         if QuestDebug.m_CheckQuests then
@@ -77,14 +77,13 @@ function QuestDebug:OverrideQuestSystemTriggerQuest()
                     end
                 end
             end
-            for i= 1, table.getn(self.m_Rewards), 1 do
-                if self.m_Rewards[i][1] == Callbacks.MapScriptFunction and self.m_Rewards[i][2][2].Debug then
-                    if self.m_Rewards[i][2][2]:Debug(self) then
-                        self:Interrupt();
-                        return;
-                    end
-                end
-            end
+        end 
+        QuestTemplate.TriggerOriginal(self);
+    end
+
+    QuestTemplate.FailOriginal = QuestTemplate.Fail;
+    QuestTemplate.Fail = function(self)
+        if QuestDebug.m_CheckQuests then
             for i= 1, table.getn(self.m_Reprisals), 1 do
                 if self.m_Reprisals[i][1] == Callbacks.MapScriptFunction and self.m_Reprisals[i][2][2].Debug then
                     if self.m_Reprisals[i][2][2]:Debug(self) then
@@ -94,8 +93,22 @@ function QuestDebug:OverrideQuestSystemTriggerQuest()
                 end
             end
         end
-        
-        QuestTemplate.TriggerOriginal(self);
+        QuestTemplate.FailOriginal(self);
+    end
+
+    QuestTemplate.SuccessOriginal = QuestTemplate.Success;
+    QuestTemplate.Success = function(self)
+        if QuestDebug.m_CheckQuests then
+            for i= 1, table.getn(self.m_Rewards), 1 do
+                if self.m_Rewards[i][1] == Callbacks.MapScriptFunction and self.m_Rewards[i][2][2].Debug then
+                    if self.m_Rewards[i][2][2]:Debug(self) then
+                        self:Interrupt();
+                        return;
+                    end
+                end
+            end
+        end
+        QuestTemplate.SuccessOriginal(self);
     end
 end
 
