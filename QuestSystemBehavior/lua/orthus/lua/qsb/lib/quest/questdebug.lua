@@ -81,34 +81,16 @@ function QuestDebug:OverrideQuestSystemToCheckBehavior()
         QuestTemplate.TriggerOriginal(self);
     end
 
-    QuestTemplate.FailOriginal = QuestTemplate.Fail;
-    QuestTemplate.Fail = function(self)
-        if QuestDebug.m_CheckQuests then
-            for i= 1, table.getn(self.m_Reprisals), 1 do
-                if self.m_Reprisals[i][1] == Callbacks.MapScriptFunction and self.m_Reprisals[i][2][2].Debug then
-                    if self.m_Reprisals[i][2][2]:Debug(self) then
-                        self:Interrupt();
-                        return;
-                    end
+    QuestTemplate.ApplyCallbacksOriginal = QuestTemplate.ApplyCallbacks;
+    QuestTemplate.ApplyCallbacks = function(self, _Behavior, _ResultType)
+        if _Behavior[1] == Callbacks.MapScriptFunction then
+            if _Behavior[2][2].Debug then
+                if not self.m_Reprisals[i][2][2]:Debug(self) then
+                    SaveCall{_Behavior[2][1], _Behavior[2][2], self};
                 end
             end
         end
-        QuestTemplate.FailOriginal(self);
-    end
-
-    QuestTemplate.SuccessOriginal = QuestTemplate.Success;
-    QuestTemplate.Success = function(self)
-        if QuestDebug.m_CheckQuests then
-            for i= 1, table.getn(self.m_Rewards), 1 do
-                if self.m_Rewards[i][1] == Callbacks.MapScriptFunction and self.m_Rewards[i][2][2].Debug then
-                    if self.m_Rewards[i][2][2]:Debug(self) then
-                        self:Interrupt();
-                        return;
-                    end
-                end
-            end
-        end
-        QuestTemplate.SuccessOriginal(self);
+        QuestTemplate.ApplyCallbacksOriginal(self, _Behavior, _ResultType);
     end
 end
 
