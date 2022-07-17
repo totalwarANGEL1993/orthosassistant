@@ -3,7 +3,17 @@ Version Beta 1.6.0
 - Fehler in der Aktualisierung der Modelle behoben.
   Alle Models aktualisieren sich jetzt automatisch. Dadurch
   Entfallen alle "Aktualisieren" Buttons.
-- Armeen können im gleichen Quest erstellt werden, wie AIs.
+- Die Prüfung von Reprisals und Rewards erfolgt erst, wenn
+  versucht wird sie auszuführen. Im Fehlerfall wird das
+  fehlerhafte Behavior übersprungen.
+- Behavior hinzugefügt: Reprisal_DefeatOtherPlayer
+  Man kann den Spieler angeben, der verlieren soll.
+- Behavior hinzugefügt: Reward_DefeatOtherPlayer
+  Man kann den Spieler angeben, der verlieren soll.
+- Behavior hinzugefügt: Reprisal_VictoryOtherPlayer
+  Man kann den Spieler angeben, der gewinnen soll.
+- Behavior hinzugefügt: Reward_VictoryOtherPlayer
+  Man kann den Spieler angeben, der gewinnen soll.
 
 ------------------------------------------------------------
 
