@@ -35,7 +35,7 @@
 <h2>Contents</h2>
 <ul>
 <li><a href="#Functions">Functions</a></li>
-<li><a href="#AiTroopSpawner">AiTroopSpawner</a></li>
+<li><a href="#AiTroopRecruiter">AiTroopRecruiter</a></li>
 </ul>
 
 
@@ -98,15 +98,51 @@
 	<td class="summary">Returns the instance of the producer if it exists.</td>
 	</tr>
 </table>
-<h2><a href="#AiTroopSpawner">AiTroopSpawner</a></h2>
+<h2><a href="#AiTroopRecruiter">AiTroopRecruiter</a></h2>
 <table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#AiTroopRecruiter:AddType">AiTroopRecruiter:AddType (_Type)</a></td>
+	<td class="summary">Adds an troop type to the recruiter.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#AiTroopRecruiter:AddTypes">AiTroopRecruiter:AddTypes (_List)</a></td>
+	<td class="summary">Adds an troop type to the recruiter.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#AiTroopRecruiter:ClearTypes">AiTroopRecruiter:ClearTypes ()</a></td>
+	<td class="summary">Clears the type list of the recruiter.</td>
+	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#AiTroopRecruiter:CreateTroop">AiTroopRecruiter:CreateTroop (_IgnoreCreated)</a></td>
 	<td class="summary">Creates an new unit.</td>
 	</tr>
 	<tr>
+	<td class="name" nowrap><a href="#AiTroopRecruiter:GetApproachPosition">AiTroopRecruiter:GetApproachPosition ()</a></td>
+	<td class="summary">Returns the position where troops are recruited.</td>
+	</tr>
+	<tr>
 	<td class="name" nowrap><a href="#AiTroopRecruiter:GetTroop">AiTroopRecruiter:GetTroop ()</a></td>
 	<td class="summary">Obtains the next unit from the producer.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#AiTroopRecruiter:IsAlive">AiTroopRecruiter:IsAlive ()</a></td>
+	<td class="summary">Returns if the recruiter ist existing.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#AiTroopRecruiter:SetApproachPosition">AiTroopRecruiter:SetApproachPosition (_Position)</a></td>
+	<td class="summary">Creates a new approach position at the location.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#AiTroopRecruiter:SetCheatCosts">AiTroopRecruiter:SetCheatCosts (_Flag)</a></td>
+	<td class="summary">Sets if the AI is cheating costs at this recruiter building.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#AiTroopRecruiter:SetEnabled">AiTroopRecruiter:SetEnabled (_Flag)</a></td>
+	<td class="summary">Changes the active flag of the recruiter.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#AiTroopRecruiter:SetSelector">AiTroopRecruiter:SetSelector (_Selector)</a></td>
+	<td class="summary">Sets the troop selector function of the recruiter.</td>
 	</tr>
 </table>
 
@@ -196,9 +232,65 @@
 
 </dd>
 </dl>
-    <h2 class="section-header "><a name="AiTroopSpawner"></a>AiTroopSpawner</h2>
+    <h2 class="section-header "><a name="AiTroopRecruiter"></a>AiTroopRecruiter</h2>
 
     <dl class="function">
+    <dt>
+    <a name = "AiTroopRecruiter:AddType"></a>
+    <strong>AiTroopRecruiter:AddType (_Type)</strong>
+    </dt>
+    <dd>
+    Adds an troop type to the recruiter.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">_Type</span>
+            <span class="types"><span class="type">number</span></span>
+         Type to recruit
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "AiTroopRecruiter:AddTypes"></a>
+    <strong>AiTroopRecruiter:AddTypes (_List)</strong>
+    </dt>
+    <dd>
+    Adds an troop type to the recruiter.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">_List</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+         List of types
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "AiTroopRecruiter:ClearTypes"></a>
+    <strong>AiTroopRecruiter:ClearTypes ()</strong>
+    </dt>
+    <dd>
+    Clears the type list of the recruiter.
+
+
+
+
+
+
+
+</dd>
     <dt>
     <a name = "AiTroopRecruiter:CreateTroop"></a>
     <strong>AiTroopRecruiter:CreateTroop (_IgnoreCreated)</strong>
@@ -215,6 +307,26 @@
         </li>
     </ul>
 
+
+
+
+
+</dd>
+    <dt>
+    <a name = "AiTroopRecruiter:GetApproachPosition"></a>
+    <strong>AiTroopRecruiter:GetApproachPosition ()</strong>
+    </dt>
+    <dd>
+    Returns the position where troops are recruited.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+        ID of approach position
+    </ol>
 
 
 
@@ -242,6 +354,110 @@
 
 
 </dd>
+    <dt>
+    <a name = "AiTroopRecruiter:IsAlive"></a>
+    <strong>AiTroopRecruiter:IsAlive ()</strong>
+    </dt>
+    <dd>
+    Returns if the recruiter ist existing.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">boolean</span></span>
+        Recruiter is existing
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "AiTroopRecruiter:SetApproachPosition"></a>
+    <strong>AiTroopRecruiter:SetApproachPosition (_Position)</strong>
+    </dt>
+    <dd>
+    Creates a new approach position at the location.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">_Position</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+         Location of approach position
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "AiTroopRecruiter:SetCheatCosts"></a>
+    <strong>AiTroopRecruiter:SetCheatCosts (_Flag)</strong>
+    </dt>
+    <dd>
+    Sets if the AI is cheating costs at this recruiter building.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">_Flag</span>
+            <span class="types"><span class="type">boolean</span></span>
+         Cheat costs
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "AiTroopRecruiter:SetEnabled"></a>
+    <strong>AiTroopRecruiter:SetEnabled (_Flag)</strong>
+    </dt>
+    <dd>
+    Changes the active flag of the recruiter.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">_Flag</span>
+            <span class="types"><span class="type">boolean</span></span>
+         Recruiter is active
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "AiTroopRecruiter:SetSelector"></a>
+    <strong>AiTroopRecruiter:SetSelector (_Selector)</strong>
+    </dt>
+    <dd>
+    Sets the troop selector function of the recruiter.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">_Selector</span>
+            <span class="types"><span class="type">function</span></span>
+         Selector function
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
 </dl>
 
 
@@ -249,7 +465,7 @@
 </div> <!-- id="main" -->
 <div id="about">
 <i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
-<i style="float:right;">Last updated 2022-07-17 17:28:52 </i>
+<i style="float:right;">Last updated 2022-07-18 19:48:19 </i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 

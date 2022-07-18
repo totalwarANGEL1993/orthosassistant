@@ -104,12 +104,40 @@
 <h2><a href="#AiTroopSpawner">AiTroopSpawner</a></h2>
 <table class="function_list">
 	<tr>
+	<td class="name" nowrap><a href="#AiTroopSpawner:AddType">AiTroopSpawner:AddType (_Type, _Exp)</a></td>
+	<td class="summary">Adds an troop type to the spawner.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#AiTroopSpawner:ClearTypes">AiTroopSpawner:ClearTypes ()</a></td>
+	<td class="summary">Clears the type list of the spawner.</td>
+	</tr>
+	<tr>
 	<td class="name" nowrap><a href="#AiTroopSpawner:CreateTroop">AiTroopSpawner:CreateTroop (_IgnoreCreated, _Initial)</a></td>
 	<td class="summary">Creates an new unit.</td>
 	</tr>
 	<tr>
+	<td class="name" nowrap><a href="#AiTroopSpawner:GetApproachPosition">AiTroopSpawner:GetApproachPosition ()</a></td>
+	<td class="summary">Returns the position where troops are spawned.</td>
+	</tr>
+	<tr>
 	<td class="name" nowrap><a href="#AiTroopSpawner:GetTroop">AiTroopSpawner:GetTroop ()</a></td>
 	<td class="summary">Obtains the next unit from the producer.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#AiTroopSpawner:IsAlive">AiTroopSpawner:IsAlive ()</a></td>
+	<td class="summary">Returns if the spawner ist existing.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#AiTroopSpawner:SetApproachPosition">AiTroopSpawner:SetApproachPosition (_Position)</a></td>
+	<td class="summary">Creates a new approach position at the location.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#AiTroopSpawner:SetDelay">AiTroopSpawner:SetDelay (_Time)</a></td>
+	<td class="summary">Changes the delay between spawned troops.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#AiTroopSpawner:SetEnabled">AiTroopSpawner:SetEnabled (_Flag)</a></td>
+	<td class="summary">Changes the active flag of the spawner.</td>
 	</tr>
 </table>
 
@@ -203,6 +231,45 @@
 
     <dl class="function">
     <dt>
+    <a name = "AiTroopSpawner:AddType"></a>
+    <strong>AiTroopSpawner:AddType (_Type, _Exp)</strong>
+    </dt>
+    <dd>
+    Adds an troop type to the spawner.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">_Type</span>
+            <span class="types"><span class="type">number</span></span>
+         Type to spawn
+        </li>
+        <li><span class="parameter">_Exp</span>
+            <span class="types"><span class="type">number</span></span>
+          Experience
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "AiTroopSpawner:ClearTypes"></a>
+    <strong>AiTroopSpawner:ClearTypes ()</strong>
+    </dt>
+    <dd>
+    Clears the type list of the spawner.
+
+
+
+
+
+
+
+</dd>
+    <dt>
     <a name = "AiTroopSpawner:CreateTroop"></a>
     <strong>AiTroopSpawner:CreateTroop (_IgnoreCreated, _Initial)</strong>
     </dt>
@@ -222,6 +289,26 @@
         </li>
     </ul>
 
+
+
+
+
+</dd>
+    <dt>
+    <a name = "AiTroopSpawner:GetApproachPosition"></a>
+    <strong>AiTroopSpawner:GetApproachPosition ()</strong>
+    </dt>
+    <dd>
+    Returns the position where troops are spawned.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+        ID of approach position
+    </ol>
 
 
 
@@ -249,6 +336,89 @@
 
 
 </dd>
+    <dt>
+    <a name = "AiTroopSpawner:IsAlive"></a>
+    <strong>AiTroopSpawner:IsAlive ()</strong>
+    </dt>
+    <dd>
+    Returns if the spawner ist existing.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">boolean</span></span>
+        Spawner is existing
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "AiTroopSpawner:SetApproachPosition"></a>
+    <strong>AiTroopSpawner:SetApproachPosition (_Position)</strong>
+    </dt>
+    <dd>
+    Creates a new approach position at the location.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">_Position</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+         Location of approach position
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "AiTroopSpawner:SetDelay"></a>
+    <strong>AiTroopSpawner:SetDelay (_Time)</strong>
+    </dt>
+    <dd>
+    Changes the delay between spawned troops.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">_Time</span>
+            <span class="types"><span class="type">number</span></span>
+         Time between spawns
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "AiTroopSpawner:SetEnabled"></a>
+    <strong>AiTroopSpawner:SetEnabled (_Flag)</strong>
+    </dt>
+    <dd>
+    Changes the active flag of the spawner.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">_Flag</span>
+            <span class="types"><span class="type">boolean</span></span>
+         Spawner is active
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
 </dl>
 
 
@@ -256,7 +426,7 @@
 </div> <!-- id="main" -->
 <div id="about">
 <i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
-<i style="float:right;">Last updated 2022-07-17 17:28:52 </i>
+<i style="float:right;">Last updated 2022-07-18 19:48:19 </i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 
