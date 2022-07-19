@@ -1,11 +1,14 @@
 Version Beta 1.6.0
 
+Programm
 - Fehler in der Aktualisierung der Modelle behoben.
   Alle Models aktualisieren sich jetzt automatisch. Dadurch
   Entfallen alle "Aktualisieren" Buttons.
 - Die Prüfung von Reprisals und Rewards erfolgt erst, wenn
   versucht wird sie auszuführen. Im Fehlerfall wird das
   fehlerhafte Behavior übersprungen.
+
+Bibliothek
 - Behavior hinzugefügt: Reprisal_DefeatOtherPlayer
   Man kann den Spieler angeben, der verlieren soll.
 - Behavior hinzugefügt: Reward_DefeatOtherPlayer
@@ -14,6 +17,10 @@ Version Beta 1.6.0
   Man kann den Spieler angeben, der gewinnen soll.
 - Behavior hinzugefügt: Reward_VictoryOtherPlayer
   Man kann den Spieler angeben, der gewinnen soll.
+- Standard Zoom Limit ist jetzt 1.5
+- Ein Game Callback für Producer hinzugefügt. Dadurch kann eine frisch
+  produzierte Einheit sofort bearbeitet werden.
+- Dokumentation für QSB Game Callbacks hinzugefügt
 
 ------------------------------------------------------------
 
