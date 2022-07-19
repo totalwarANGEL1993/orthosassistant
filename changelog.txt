@@ -18,8 +18,8 @@ Bibliothek
 - Behavior hinzugefügt: Reward_VictoryOtherPlayer
   Man kann den Spieler angeben, der gewinnen soll.
 - Standard Zoom Limit ist jetzt 1.5
-- Ein Game Callback für Producer hinzugefügt. Dadurch kann eine frisch
-  produzierte Einheit sofort bearbeitet werden.
+- Ein Game Callback für Producer hinzugefügt
+- Wann eine Spawn Army als besiegt gilt, kann nun konfiguriert werden
 - Dokumentation für QSB Game Callbacks hinzugefügt
 
 ------------------------------------------------------------
