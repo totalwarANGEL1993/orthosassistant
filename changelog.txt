@@ -20,6 +20,7 @@ Bibliothek
 - Standard Zoom Limit ist jetzt 1.5
 - Ein Game Callback für Producer hinzugefügt
 - Wann eine Spawn Army als besiegt gilt, kann nun konfiguriert werden
+- Spawnpoint von Standard Spawn Armies korrigiert
 - Dokumentation für QSB Game Callbacks hinzugefügt
 
 ------------------------------------------------------------
