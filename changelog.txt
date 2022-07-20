@@ -18,8 +18,12 @@ Bibliothek
 - Behavior hinzugefügt: Reward_VictoryOtherPlayer
   Man kann den Spieler angeben, der gewinnen soll.
 - Standard Zoom Limit ist jetzt 1.5
+- Armeen marschieren seltener in langen Kolonen. Sie versuchen
+  öfter zu gruppieren.
+- Armeen fallen nicht mehr so oft auf Ablenkungen herein
 - Ein Game Callback für Producer hinzugefügt
-- Wann eine Spawn Army als besiegt gilt, kann nun konfiguriert werden
+- Wann eine Spawn Army als besiegt gilt, kann nun konfiguriert
+  werden
 - Spawnpoint von Standard Spawn Armies korrigiert
 - Dokumentation für QSB Game Callbacks hinzugefügt
 
