@@ -9,6 +9,8 @@ Programm
   fehlerhafte Behavior übersprungen.
 
 Bibliothek
+- Quests werden korrekt auf ihren Status gesetzt, wenn sie
+  vorher inaktiv waren.
 - Behavior hinzugefügt: Reprisal_DefeatOtherPlayer
   Man kann den Spieler angeben, der verlieren soll.
 - Behavior hinzugefügt: Reward_DefeatOtherPlayer
