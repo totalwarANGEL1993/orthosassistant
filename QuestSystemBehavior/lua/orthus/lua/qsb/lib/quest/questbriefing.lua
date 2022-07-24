@@ -1063,7 +1063,7 @@ function QuestBriefing:FaderDelayController(_PlayerID, _Duration, _StartTime, _F
     end
     if Logic.GetTimeMs() > _StartTime then
         self:StopFader(_PlayerID);
-        self:StartFader(_PlayerID, _Duration, Logic.GetTimeMs(), _FadeIn);
+        self:StartFader(_PlayerID, _Duration, _FadeIn);
         return true;
     end
     return false;

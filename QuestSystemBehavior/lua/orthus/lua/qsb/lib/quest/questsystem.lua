@@ -118,7 +118,7 @@ function QuestSystem:CreateScriptEvents()
         -- Set seed
         math.randomseed(tonumber(_TimeString));
         -- Call it once to get fresh randoms
-        math.random(1, 100);
+        local void = math.random(1, 100);
     end);
 end
 

@@ -1082,7 +1082,7 @@ end
 function AiArmy:ExpellSettler(_TroopID)
     if self:IsTroopAlive(_TroopID) then
         if Logic.IsLeader(_TroopID) == 1 then
-            local Soldiers = {Logic.GetSoldiersAttachedToLeader(ID)};
+            local Soldiers = {Logic.GetSoldiersAttachedToLeader(_TroopID)};
             for j= Soldiers[1]+1, 2, -1 do
                 local x,y,z = Logic.EntityGetPos(Soldiers[j]);
                 Logic.CreateEffect(GGL_Effects.FXDie, x, y, self.PlayerID);
@@ -1512,7 +1512,7 @@ function AiArmy:GetBehaviorInQueue(_Name)
 end
 
 function AiArmy:IsValidBehavior(_Name)
-    return type(AiArmyBehavior[Name]) == "table";
+    return type(AiArmyBehavior[_Name]) == "table";
 end
 
 function AiArmy:IsBehaviorEnqueued(_Name)
