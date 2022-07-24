@@ -162,7 +162,7 @@ function QuestBriefing:OverrideBriefingFunctions()
     --
     -- <table border="1">
     -- <tr>
-    -- <td><b>Attribute</b></td>
+    -- <td><b>Attributes</b></td>
     -- <td><b>Type</b></td>
     -- <td><b>Description</b></td>
     -- </tr>
@@ -284,7 +284,7 @@ function QuestBriefing:AddPages(_Briefing)
     --
     -- <table border="1">
     -- <tr>
-    -- <td><b>Attribute</b></td>
+    -- <td><b>Attributes</b></td>
     -- <td><b>Type</b></td>
     -- <td><b>Description</b></td>
     -- </tr>
@@ -327,6 +327,15 @@ function QuestBriefing:AddPages(_Briefing)
     -- for the first page.</td>
     -- </tr>
     -- <tr>
+    -- <td>Duration</td>
+    -- <td>number</td>
+    -- <td>(Optional) Show time of the page in seconds.</td>
+    -- </tr>
+    -- <td>Height</td>
+    -- <td>number</td>
+    -- <td>(Optional) Sets the calculated camera height.</td>
+    -- </tr>
+    -- <tr>
     -- <td>Distance</td>
     -- <td>number</td>
     -- <td>(Optional) Sets a different distance to the target.</td>
@@ -355,6 +364,22 @@ function QuestBriefing:AddPages(_Briefing)
     -- <td>RenderSky</td>
     -- <td>boolean</td>
     -- <td>Shows the sky.</td>
+    -- </tr>
+    -- <tr>
+    -- <td>FadeIn</td>
+    -- <td>number</td>
+    -- <td>(Optional) Duration of page fade in.</td>
+    -- </tr>
+    -- <tr>
+    -- <td>FadeOut</td>
+    -- <td>number</td>
+    -- <td>(Optional) Duration of page fade out.</td>
+    -- </tr>
+    -- <tr>
+    -- <td>FaderAlpha</td>
+    -- <td>number</td>
+    -- <td>(Optional) Opacity of fader mask. This must be used between two
+    -- fading animations in an extra page.</td>
     -- </tr>
     -- <tr>
     -- <td>Minimap</td>
@@ -527,6 +552,9 @@ function QuestBriefing:StartBriefing(_Briefing, _ID, _PlayerID)
         -- Calculate duration and height
         for k, v in pairs(self.m_Book[_PlayerID]) do
             if type(v) == "table" then
+                if v.Target then
+                    self.m_Book[_PlayerID][k].Position = GetPosition(v.Target);
+                end
                 self.m_Book[_PlayerID][k] = self:AdjustBriefingPageCamHeight(v);
                 if not v.Duration then
                     local Text = v.Text or "";
@@ -594,10 +622,6 @@ function QuestBriefing:NextPage(_PlayerID, _FirstPage)
     end
     -- Set start time
     self.m_Book[_PlayerID][PageID].StartTime = round(Logic.GetTime() * 10);
-    -- Set position
-    if Page.Target then
-        self.m_Book[_PlayerID][PageID].Position = GetPosition(Page.Target);
-    end
     -- Create exploration entity
     if Page.Target and Page.Explore and Page.Explore > 0 then
         local Position = GetPosition(Page.Target);
@@ -828,7 +852,7 @@ function QuestBriefing:AdjustBriefingPageCamHeight(_Page)
             local RotationRadiant = math.rad(_Page.Rotation or -45);
             -- Save backup for when page is visited again
             if not _Page.PositionOriginal then
-                _Page.PositionOriginal = _Page.Position;
+                _Page.PositionOriginal = copy(_Page.Position);
             end
 
             -- New position

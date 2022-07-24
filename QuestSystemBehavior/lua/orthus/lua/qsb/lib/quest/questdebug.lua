@@ -106,7 +106,7 @@ end
 function QuestDebug:ActivateConsole()
     if self.m_DebugShell then
         Input.KeyBindDown(Keys.OemPipe, "XGUIEng.ShowWidget('ChatInput',1)", 2);
-        
+
         -- Override chat input string, but only once
         if not GameCallback_GUI_ChatStringInputDone_Orig_QuestDebug then
             GameCallback_GUI_ChatStringInputDone_Orig_QuestDebug = GameCallback_GUI_ChatStringInputDone;
@@ -557,7 +557,7 @@ function QuestDebug:CreateCheats()
         Input.KeyBindDown(Keys.ModifierControl + Keys.ModifierShift + Keys.F,   "LocalKeyBindings_ToggleFoW()", 2);
         Input.KeyBindDown(Keys.ModifierControl + Keys.ModifierShift + Keys.G,   "Game.GUIActivate(-1)", 2);
         Input.KeyBindDown(Keys.ModifierControl + Keys.ModifierShift + Keys.Y,   "Display.SetRenderSky(-1)", 2);
-        
+
         -- Changing entity owner
         Input.KeyBindDown(Keys.ModifierShift + Keys.D1, "Cheats_ChangePlayer(1)", 2);
         Input.KeyBindDown(Keys.ModifierShift + Keys.D2, "Cheats_ChangePlayer(2)", 2);
@@ -579,11 +579,11 @@ function QuestDebug:CreateCheats()
             Input.KeyBindDown(Keys.ModifierShift + Keys.ModifierAlt + Keys.D7, "GUI.SetControlledPlayer(7)", 2);
             Input.KeyBindDown(Keys.ModifierShift + Keys.ModifierAlt + Keys.D8, "GUI.SetControlledPlayer(8)", 2);
         end
-        
+
         -- Change entity health
         Input.KeyBindDown(Keys.ModifierControl + Keys.H, "Cheats_ChangeHealth(0)", 2);
         Input.KeyBindDown(Keys.ModifierShift + Keys.H, "Cheats_ChangeHealth(1)", 2);
-        
+
         -- Cheat units
         Input.KeyBindDown(Keys.ModifierControl + Keys.ModifierAlt + Keys.D1, "Cheats_CreateUnitUnderMouse(1)", 2);
         Input.KeyBindDown(Keys.ModifierControl + Keys.ModifierAlt + Keys.D2, "Cheats_CreateUnitUnderMouse(2)", 2);
@@ -653,6 +653,7 @@ end
 
 function QuestDebug:OverrideSaveGameLoaded()
     AddOnSaveLoadedAction(function()
+        QuestDebug:CreateCheatMethods();
         QuestDebug:CreateCheats();
     end);
 end
