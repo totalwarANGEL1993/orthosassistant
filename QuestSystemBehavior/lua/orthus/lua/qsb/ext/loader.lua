@@ -25,4 +25,8 @@ end
 if SVLib == nil then
     Script.Load(gvBasePath.. "qsb/ext/svlib.lua");
 end
+-- Original Hook
+if InstallHook == nil then
+    Script.Load(gvBasePath.. "qsb/ext/s5hook.lua");
+end
 

@@ -523,7 +523,7 @@ function QuestSystemBehavior:PrepareQuestSystem()
             QuestSystemBehavior:UpdatePlayerColorAssigment()
             Camera.ZoomSetFactorMax(QuestSystemBehavior.Data.ZoomFactorMax);
         end);
-        if CppLogic then
+        if CppLogic and CppLogic.OnLeaveMap then
             self.Data.CurrentMapName = Framework.GetCurrentMapName();
             AddOnSaveLoadedAction(function()
                 QuestSystemBehavior:ReloadS5Hook()
@@ -704,7 +704,7 @@ end
 -- @local
 --
 function QuestSystemBehavior:UnloadS5Hook()
-    if not CppLogic.OnLeaveMap then
+    if not CppLogic or not CppLogic.OnLeaveMap then
         Message("ERROR: Can not find CppLogic!");
         return;
     end
@@ -781,7 +781,9 @@ function QuestSystemBehavior:InstallS5Hook()
 end
 
 function QuestSystemBehavior:ReloadS5Hook()
-    CppLogic_ResetGlobal();
+    if CppLogic_ResetGlobal then
+        CppLogic_ResetGlobal();
+    end
     if not CppLogic.Logic.ReloadCutscene then
         Message("ERROR: Can not find CppLogic!");
         self.Data.S5HookInitalized = false;
